@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.25
+Version: 1.1.26
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -9,6 +9,7 @@ BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos
+Provides: system-logos
 conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 
@@ -97,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Sat Jun  5 2004 Jeremy Katz <katzj@redhat.com> - 1.1.26-1
+- provide: system-logos
+
 * Thu Jun  3 2004 Jeremy Katz <katzj@redhat.com> - 1.1.25-1
 - add anaconda bits with fedora logos
 
