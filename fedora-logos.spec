@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.21
-Release: 1.1
+Version: 1.1.23
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2003 Red Hat, Inc.  All rights reserved.
@@ -92,8 +92,11 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
-- rebuilt
+* Tue Mar 23 2004 Alexander Larsson <alexl@redhat.com> 1.1.23-1
+- Use correct gdm logo 
+
+* Tue Mar 23 2004 Alexander Larsson <alexl@redhat.com> 1.1.22-1
+- fix up gdm logo and add screenshot
 
 * Tue Feb  3 2004 Jonathan Blandford <jrb@redhat.com> 1.1.21-1
 - add rhgb logo
