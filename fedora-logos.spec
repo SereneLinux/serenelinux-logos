@@ -1,14 +1,15 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.20
+Version: 1.1.20.2
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-Copyright: Copyright © 1999-2003 Red Hat, Inc.  All rights reserved.
+License: Copyright © 1999-2003 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos
+conflicts: kdebase <= 3.1.5
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -52,11 +53,9 @@ for i in gnome-splash/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/pics
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/pics/locolor
-for i in kde-splash/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/pics
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/pics/locolor
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
+for i in kde-splash/BlueCurve/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
 done
 
 #mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
@@ -79,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc COPYING
 %{_datadir}/firstboot
-%{_datadir}/apps
+%{_datadir}/apps/ksplash/Themes/BlueCurve
 %{_datadir}/pixmaps
 %{_datadir}/gdm
 # should be ifarch i386
@@ -87,6 +86,12 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Nov 11 2003 Than Ngo <than@redhat.com> 1.1.20.2-1
+- added Preview for ksplash
+
+* Mon Nov 10 2003 Than Ngo <than@redhat.com> 1.1.20.1-1
+- added new BlueCurve Ksplash Theme for KDE 3.2
+
 * Thu Oct 30 2003 Havoc Pennington <hp@redhat.com> 1.1.20-1
 - build new stuff from garrett
 
