@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.26
-Release: 1.1
+Release: 1.2
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 Source1: fedora-logos-test.tar.gz
