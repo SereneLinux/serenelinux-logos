@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.23
+Version: 1.1.24
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed May  5 2004 Jeremy Katz <katzj@redhat.com> - 1.1.24-1
+- newer grub image for fc2
+
 * Tue Mar 23 2004 Alexander Larsson <alexl@redhat.com> 1.1.23-1
 - Use correct gdm logo 
 
