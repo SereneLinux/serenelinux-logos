@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.19
+Version: 1.1.20
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Oct 30 2003 Havoc Pennington <hp@redhat.com> 1.1.20-1
+- build new stuff from garrett
+
 * Thu Oct  9 2003 Bill Nottingham <notting@redhat.com> 1.1.19-1
 - add a symlink for up2date
 
