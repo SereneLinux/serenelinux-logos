@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.20.2
-Release: 1
+Version: 1.1.21
+Release: 1.1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2003 Red Hat, Inc.  All rights reserved.
@@ -48,6 +48,11 @@ for i in firstboot/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/rhgb
+for i in rhgb/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/rhgb
+done
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 for i in gnome-splash/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -81,11 +86,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksplash/Themes/BlueCurve
 %{_datadir}/pixmaps
 %{_datadir}/gdm
+%{_datadir}/rhgb
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
+* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Tue Feb  3 2004 Jonathan Blandford <jrb@redhat.com> 1.1.21-1
+- add rhgb logo
+
 * Tue Nov 11 2003 Than Ngo <than@redhat.com> 1.1.20.2-1
 - added Preview for ksplash
 
