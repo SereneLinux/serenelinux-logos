@@ -1,15 +1,16 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.24
+Version: 1.1.25
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-License: Copyright © 1999-2003 Red Hat, Inc.  All rights reserved.
+License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos
 conflicts: kdebase <= 3.1.5
+Conflicts: anaconda-images <= 10
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -76,6 +77,8 @@ done
 ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
  $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
 
+(cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -87,11 +90,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps
 %{_datadir}/gdm
 %{_datadir}/rhgb
+%{_datadir}/anaconda/pixmaps/*
+/usr/lib/anaconda-runtime/boot/*png
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
+* Thu Jun  3 2004 Jeremy Katz <katzj@redhat.com> - 1.1.25-1
+- add anaconda bits with fedora logos
+
 * Wed May  5 2004 Jeremy Katz <katzj@redhat.com> - 1.1.24-1
 - newer grub image for fc2
 
