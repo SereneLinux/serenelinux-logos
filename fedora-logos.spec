@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.26
-Release: 1.2
+Version: 1.1.27
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 Source1: fedora-logos-test.tar.gz
@@ -99,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Sep 30 2004 Than Ngo <than@redhat.com> 1.1.27-1
+- fix kde splash
+
 * Wed Jul 07 2004 Elliot Lee <sopwith@redhat.com> 1.1.26-1.1
 - Update for test release
 
