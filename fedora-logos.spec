@@ -1,9 +1,10 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.26
-Release: 1
+Release: 1.1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
+Source1: fedora-logos-test.tar.gz
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
@@ -23,7 +24,7 @@ See the included COPYING file for information on copying and
 redistribution.
 
 %prep
-%setup -q
+%setup -q -a 1
 
 %build
 
@@ -98,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Jul 07 2004 Elliot Lee <sopwith@redhat.com> 1.1.26-1.1
+- Update for test release
+
 * Sat Jun  5 2004 Jeremy Katz <katzj@redhat.com> - 1.1.26-1
 - provide: system-logos
 
