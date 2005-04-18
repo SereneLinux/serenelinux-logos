@@ -1,10 +1,9 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.27
-Release: 1
+Version: 1.1.30
+Release: 2
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-Source1: fedora-logos-test.tar.gz
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
@@ -24,7 +23,7 @@ See the included COPYING file for information on copying and
 redistribution.
 
 %prep
-%setup -q -a 1
+%setup -q
 
 %build
 
@@ -76,6 +75,13 @@ for i in gdm/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
 done
 
+# kdmtheme
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
+pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
+ln -s ../../../../gdm/themes/Bluecurve/rh_logo-header.png .
+ln -s ../../../../gdm/themes/Bluecurve/screenshot.png
+popd
+
 ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
  $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
 
@@ -91,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksplash/Themes/BlueCurve
 %{_datadir}/pixmaps
 %{_datadir}/gdm
+%{_datadir}/apps/kdm/themes/Bluecurve
 %{_datadir}/rhgb
 %{_datadir}/anaconda/pixmaps/*
 /usr/lib/anaconda-runtime/boot/*png
@@ -99,11 +106,17 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Mon Apr 18 2005 Than Ngo <than@redhat.com> 1.1.30-1
+- add missing fedora logos for kdmtheme
+
+* Tue Oct 26 2004 Jeremy Katz <katzj@redhat.com> - 1.1.29-1
+- non-test anaconda splash
+
+* Tue Oct 26 2004 Jeremy Katz <katzj@redhat.com> - 1.1.28-1
+- generic Fedora Core graphics for !test release
+
 * Thu Sep 30 2004 Than Ngo <than@redhat.com> 1.1.27-1
 - fix kde splash
-
-* Wed Jul 07 2004 Elliot Lee <sopwith@redhat.com> 1.1.26-1.1
-- Update for test release
 
 * Sat Jun  5 2004 Jeremy Katz <katzj@redhat.com> - 1.1.26-1
 - provide: system-logos
