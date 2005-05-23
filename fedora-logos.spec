@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.30
-Release: 2
+Version: 1.1.31
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
@@ -106,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Mon May 23 2005 Jeremy Katz <katzj@redhat.com> - 1.1.31-1
+- copyright date on anaconda splash (#153964)
+
 * Mon Apr 18 2005 Than Ngo <than@redhat.com> 1.1.30-1
 - add missing fedora logos for kdmtheme
 
