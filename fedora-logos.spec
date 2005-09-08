@@ -1,16 +1,16 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.31
-Release: 1
+Release: 2
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
-Provides: redhat-logos
-Provides: system-logos
-conflicts: kdebase <= 3.1.5
+Provides: redhat-logos = %{version}-%{release}
+Provides: system-logos = %{version}-%{release}
+Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 
 %description
@@ -106,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Sep 08 2005 Florian La Roche <laroche@redhat.com>
+- add version-release to the Provides:
+
 * Mon May 23 2005 Jeremy Katz <katzj@redhat.com> - 1.1.31-1
 - copyright date on anaconda splash (#153964)
 
