@@ -1,16 +1,16 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.31
-Release: 2
+Version: 1.1.32
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
-Provides: redhat-logos = %{version}-%{release}
-Provides: system-logos = %{version}-%{release}
-Conflicts: kdebase <= 3.1.5
+Provides: redhat-logos
+Provides: system-logos
+conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 
 %description
@@ -65,10 +65,17 @@ for i in kde-splash/BlueCurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
 done
 
-#mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
-#for i in pixmaps/* ; do
-#  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
-#done
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
+for i in pixmaps/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
+done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/apps
+for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
+  for i in icons/hicolor/apps/$size/* ; do
+    install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/apps/$size
+  done
+done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
 for i in gdm/* ; do
@@ -100,14 +107,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdm/themes/Bluecurve
 %{_datadir}/rhgb
 %{_datadir}/anaconda/pixmaps/*
+%{_datadir}/icons
+
 /usr/lib/anaconda-runtime/boot/*png
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
-* Thu Sep 08 2005 Florian La Roche <laroche@redhat.com>
-- add version-release to the Provides:
+* Thu Nov 10 2005 John (J5) Palmieri <johnp@redhat.com> - 1.1.32-1
+- Add new fedora logos to pixmap and icons/hicolor
 
 * Mon May 23 2005 Jeremy Katz <katzj@redhat.com> - 1.1.31-1
 - copyright date on anaconda splash (#153964)
