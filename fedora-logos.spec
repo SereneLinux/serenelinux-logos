@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.33
+Version: 1.1.34
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -72,13 +72,14 @@ done
 
 for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
+  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
   for i in icons/hicolor/$size/apps/* ; do
     install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
-    pushd $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
-    ln -s fedora-logo-icon.png icon-panel-menu.png
-    ln -s fedora-logo-icon.png gnome-main-menu.png
-    ln -s fedora-logo-icon.png kmenu.png
-    ln -s fedora-logo-icon.png gnome-logo-icon-transparent.png
+    pushd $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-logo-icon-transparent.png
     popd
   done
 done
@@ -121,6 +122,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Nov 10 2005 John (J5) Palmieri <johnp@redhat.com> - 1.1.34-1
+- Symlink fedora-logo-icon into Bluecurve instead of hicolor
+  to avoid conflicts with other packages
+
 * Thu Nov 10 2005 John (J5) Palmieri <johnp@redhat.com> - 1.1.33-1
 - Add symlinks for the panel icons to be the fedora logos
 
