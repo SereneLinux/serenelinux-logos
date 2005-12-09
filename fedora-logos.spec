@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.34
-Release: 1
+Release: 1.1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
@@ -122,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+- rebuilt
+
 * Thu Nov 10 2005 John (J5) Palmieri <johnp@redhat.com> - 1.1.34-1
 - Symlink fedora-logo-icon into Bluecurve instead of hicolor
   to avoid conflicts with other packages
