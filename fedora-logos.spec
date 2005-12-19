@@ -1,10 +1,10 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.34
-Release: 1.1
+Version: 1.1.35
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-License: Copyright © 1999-2004 Red Hat, Inc.  All rights reserved.
+License: Copyright © 1999-2005 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArchitectures: noarch
 Obsoletes: redhat-logos
@@ -117,11 +117,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/icons
 
 /usr/lib/anaconda-runtime/boot/*png
+/usr/lib/anaconda-runtime/*.sh
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
+* Mon Dec 19 2005 Jeremy Katz <katzj@redhat.com> - 1.1.35-1
+- new images from dfong
+
 * Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
 - rebuilt
 
