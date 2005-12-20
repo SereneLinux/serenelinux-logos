@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.36
+Version: 1.1.37
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -60,6 +60,11 @@ for i in gnome-splash/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver/themes
+for i in gnome-screensaver/themes/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver/themes
+done
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
 for i in kde-splash/BlueCurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
@@ -115,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/rhgb
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons
+%{_datadir}/gnome-screensaver/themes/*
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
@@ -123,6 +129,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Dec 20 2005 Ray Strode <rstrode@redhat.com> - 1.1.37-1
+- another new image from dfong (splash screen)
+- move screensaver lock dialog background here
+
 * Tue Dec 20 2005 Ray Strode <rstrode@redhat.com> - 1.1.36-1
 - another new image from dfong (screensaver sprite)
 
