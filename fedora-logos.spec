@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.35
+Version: 1.1.36
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -123,6 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Dec 20 2005 Ray Strode <rstrode@redhat.com> - 1.1.36-1
+- another new image from dfong (screensaver sprite)
+
 * Mon Dec 19 2005 Jeremy Katz <katzj@redhat.com> - 1.1.35-1
 - new images from dfong
 
