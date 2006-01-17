@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.37
+Version: 1.1.38
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -90,9 +90,15 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
-for i in gdm/* ; do
+for i in gdm/Bluecurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
 done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
+for i in gdm/FedoraBubbles/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
+done
+
 
 # kdmtheme
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
@@ -129,6 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Jan 17 2006 Ray Strode <rstrode@redhat.com> - 1.1.38-1
+- add logo bits of new gdm theme
+
 * Tue Dec 20 2005 Ray Strode <rstrode@redhat.com> - 1.1.37-1
 - another new image from dfong (splash screen)
 - move screensaver lock dialog background here
