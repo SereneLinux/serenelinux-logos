@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.39
+Version: 1.1.40
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -135,6 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Jan 20 2006 Ray Strode <rstrode@redhat.com> - 1.1.40-1
+- update the logo in the corner
+
 * Thu Jan 19 2006 Ray Strode <rstrode@redhat.com> - 1.1.39-1
 - give rhgb a new look from Diana Fong
 
