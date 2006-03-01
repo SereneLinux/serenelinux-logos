@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.41
+Version: 1.1.42
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -135,6 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Feb 28 2006 Matthias Clasen <mclasen@redhat.com> 1.1.42-1
+- New artwork for gdm, kdm Bluecurve from Diana Fong
+
 * Wed Jan 25 2006 Chris Lumens <clumens@redhat.com> 1.1.41-1
 - New artwork for firstboot from dfong (#178106).
 
