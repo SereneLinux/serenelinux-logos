@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.43
-Release: 1
+Release: 2
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -66,7 +66,7 @@ for i in gnome-screensaver/* ; do
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
-for i in backgrounds/* ; do
+for i in backgrounds/images/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 done
 
@@ -131,7 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/rhgb
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons
-%{_datadir}/gnome-screensaver/themes/*
+%{_datadir}/gnome-screensaver/*
+%{_datadir}/backgrounds/images/*
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
