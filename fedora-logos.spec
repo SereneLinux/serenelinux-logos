@@ -1,12 +1,12 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.42
+Version: 1.1.43
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-License: Copyright © 1999-2005 Red Hat, Inc.  All rights reserved.
+License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
-BuildArchitectures: noarch
+BuildArch: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos
 Provides: system-logos
@@ -60,9 +60,14 @@ for i in gnome-splash/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver/themes
-for i in gnome-screensaver/themes/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver/themes
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
+for i in gnome-screensaver/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
+done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
+for i in backgrounds/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
@@ -135,6 +140,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Mon Jun  5 2006 Matthias Clasen <mclasen@redhat.com> 1.1.43-1
+- Add branded desktop background and move the lock dialog
+  background to the right directory
+
 * Tue Feb 28 2006 Matthias Clasen <mclasen@redhat.com> 1.1.42-1
 - New artwork for gdm, kdm Bluecurve from Diana Fong
 
