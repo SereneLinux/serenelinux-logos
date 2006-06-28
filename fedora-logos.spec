@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.43
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -12,9 +12,6 @@ Provides: redhat-logos
 Provides: system-logos
 conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
-
-# Temporary hack!!
-BuildRequires: buildsys-macros
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -144,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Wed Jun 28 2006 Jesse Keating <jkeating@redhat.com> 1.1.43-4
+* Wed Jun 28 2006 Jesse Keating <jkeating@redhat.com> 1.1.43-5
 - Test build using dist tag
 
 * Mon Jun  5 2006 Matthias Clasen <mclasen@redhat.com> 1.1.43-1
