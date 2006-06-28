@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
 Version: 1.1.43
-Release: 2
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -141,6 +141,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Jun 28 2006 Jesse Keating <jkeating@redhat.com> 1.1.43-3
+- Test build using dist tag
+
 * Mon Jun  5 2006 Matthias Clasen <mclasen@redhat.com> 1.1.43-1
 - Add branded desktop background and move the lock dialog
   background to the right directory
