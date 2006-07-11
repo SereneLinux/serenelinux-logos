@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.43
-Release: 5%{?dist}
+Version: 1.1.44
+Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -63,6 +63,11 @@ done
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
 for i in gnome-screensaver/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
+done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
+for i in applications/screensavers/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
@@ -132,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons
 %{_datadir}/gnome-screensaver/*
+%{_datadir}/applications/screensavers/*
 %{_datadir}/backgrounds/images/*
 
 /usr/lib/anaconda-runtime/boot/*png
@@ -141,6 +147,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Jul 11 2006 Matthias Clasen <mclasen@redhat.com> 1.1.44-1
+- Move the complete lock dialog theme here
+
 * Wed Jun 28 2006 Jesse Keating <jkeating@redhat.com> 1.1.43-5
 - Test build using dist tag
 
