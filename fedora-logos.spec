@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.44
+Version: 1.1.45
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -8,8 +8,8 @@ License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-root
 BuildArch: noarch
 Obsoletes: redhat-logos
-Provides: redhat-logos
-Provides: system-logos
+Provides: redhat-logos = %{version}-%{release}
+Provides: system-logos = %{version}-%{release}
 conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 
@@ -147,11 +147,14 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Jul 26 2006 Alexander Larsson <alexl@redhat.com> - 1.1.45-1
+- Add wide version of default desktop background
+
+* Tue Jul 25 2006 Florian La Roche <laroche@redhat.com>
+- add version/release to the Provides: in the specfile
+
 * Tue Jul 11 2006 Matthias Clasen <mclasen@redhat.com> 1.1.44-1
 - Move the complete lock dialog theme here
-
-* Wed Jun 28 2006 Jesse Keating <jkeating@redhat.com> 1.1.43-5
-- Test build using dist tag
 
 * Mon Jun  5 2006 Matthias Clasen <mclasen@redhat.com> 1.1.43-1
 - Add branded desktop background and move the lock dialog
