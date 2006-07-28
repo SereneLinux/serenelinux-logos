@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures.
-Version: 1.1.45
+Version: 1.1.46
 Release: 1
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -147,6 +147,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Jul 27 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.46-1
+- Add new default backgrounds
+
 * Wed Jul 26 2006 Alexander Larsson <alexl@redhat.com> - 1.1.45-1
 - Add wide version of default desktop background
 
