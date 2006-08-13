@@ -1,7 +1,7 @@
 Name: fedora-logos
-Summary: Red Hat-related icons and pictures.
+Summary: Red Hat-related icons and pictures
 Version: 1.1.47
-Release: 1
+Release: 2
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -95,6 +95,7 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-logo-icon-transparent.png
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png start-here.png
     popd
   done
 done
@@ -147,6 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Sun Aug 13 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.47-2.fc6
+- Add links for new icon name used in the gnome-panel menubar
+
 * Fri Jul 28 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.47-1
 - Add a 4:3 aspect ratio background 
 - Fix extention to be .jpg on backgrounds 
