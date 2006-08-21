@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures
-Version: 1.1.47
-Release: 2
+Version: 1.1.48
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -148,6 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Sun Aug 20 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.48-1.fc6
+- Update lock dialog to work with current gnome-screensaver
+
 * Sun Aug 13 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.47-2.fc6
 - Add links for new icon name used in the gnome-panel menubar
 
