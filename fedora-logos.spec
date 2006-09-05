@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures
-Version: 1.1.48
+Version: 1.1.49
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -148,6 +148,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Sep 05 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.49-1
+- New graphics for fc6
+- Remove the 4:3 background and add 5:4 ratio background
+
 * Sun Aug 20 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.48-1.fc6
 - Update lock dialog to work with current gnome-screensaver
 
