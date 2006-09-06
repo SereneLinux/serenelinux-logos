@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures
-Version: 1.1.49
+Version: 1.1.50
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -148,6 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Sep 06 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.50-1
+- cvs add the new backgrounds this time
+
 * Tue Sep 05 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.49-1
 - New graphics for fc6
 - Remove the 4:3 background and add 5:4 ratio background
