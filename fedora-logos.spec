@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures
-Version: 1.1.52
+Version: 1.1.53
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -153,6 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Sep  7 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.53-1
+- Update the syslinux splash
+
 * Thu Sep  7 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.52-1
 - Fix the colors in the grub splash
 
