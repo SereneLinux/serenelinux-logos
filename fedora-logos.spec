@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Red Hat-related icons and pictures
-Version: 1.1.50
+Version: 1.1.51
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -110,6 +110,11 @@ for i in gdm/FedoraBubbles/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
+for i in gdm/FedoraDNA/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
+done
+
 
 # kdmtheme
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
@@ -148,6 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Sep  7 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.51-1
+- Add new gdm theme 
+
 * Wed Sep 06 2006 John (J5) Palmieri <johnp@redhat.com> - 1.1.50-1
 - cvs add the new backgrounds this time
 
