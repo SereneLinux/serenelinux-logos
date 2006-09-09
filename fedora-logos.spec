@@ -74,6 +74,8 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 for i in backgrounds/images/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 done
+# Hack to get the default background to come up
+ln -s default.jpg $RPM_BUILD_ROOT%{_datadir}/backgrounds/images/default.png
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
 for i in kde-splash/BlueCurve/* ; do
@@ -153,6 +155,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Sep  8 2006 Jesse Keating <jkeating@redhat.com> - 1.1.53-2
+- apply hack to get gnome to see the default desktop (jpg vs png)
+
 * Thu Sep  7 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.53-1
 - Update the syslinux splash
 
