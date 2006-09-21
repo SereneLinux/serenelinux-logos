@@ -1,6 +1,6 @@
 Name: fedora-logos
-Summary: Red Hat-related icons and pictures
-Version: 1.1.54
+Summary: Fedora-related icons and pictures
+Version: 1.1.55
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -153,6 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Sep 21 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.55-1
+- Final update for FC6 graphics
+
 * Wed Sep 20 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.54-1
 - Update to themed lock dialog
 
