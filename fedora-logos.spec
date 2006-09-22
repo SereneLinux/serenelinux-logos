@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -154,6 +154,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Sep 22 2006 Than Ngo <than@redhat.com> - 6.0.1-1
+- update kde ksplash
+
 * Fri Sep 22 2006 Ray Strode <rstrode@redhat.com> - 6.0.0-1
 - drop unused n-small image in FedoraDNA gdm theme
 - rename fedora.png to logo.png in FedoraDNA gdm theme
