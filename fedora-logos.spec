@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 1.1.55
+Version: 6.0.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -10,8 +10,9 @@ BuildArch: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos = %{version}-%{release}
 Provides: system-logos = %{version}-%{release}
-conflicts: kdebase <= 3.1.5
+Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
+Conflicts: redhat-artwork <= 5.0.5
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -153,6 +154,15 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Sep 22 2006 Ray Strode <rstrode@redhat.com> - 6.0.0-1
+- drop unused n-small image in FedoraDNA gdm theme
+- rename fedora.png to logo.png in FedoraDNA gdm theme
+- crop fedora.png to not have uneven padding in FedoraDNA 
+  gdm theme
+
+* Fri Sep 22 2006 Bill Nottingham <notting@redhat.com>
+- update grub splash (#207637)
+
 * Thu Sep 21 2006 Matthias Clasen <mclasen@redhat.com> - 1.1.55-1
 - Final update for FC6 graphics
 
