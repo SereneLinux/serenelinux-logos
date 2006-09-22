@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.5
+Version: 6.0.6
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -129,6 +129,11 @@ ln -s ../../../../gdm/themes/Bluecurve/rh_logo-header.png .
 ln -s ../../../../gdm/themes/Bluecurve/screenshot.png
 popd
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+for i in gdm/FedoraDNA/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+done
+
 ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
  $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
 
@@ -145,6 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 %{_datadir}/gdm/*
 %{_datadir}/apps/kdm/themes/Bluecurve/*
+%{_datadir}/apps/kdm/themes/FedoraDNA/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/*
@@ -160,6 +166,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Sep 22 2006 Than Ngo <than@redhat.com> - 6.0.6-1
+- add FedoraDNA theme for KDM
+
 * Fri Sep 22 2006 Matthias Clasen <mclasen@redhat.com> - 6.0.5-1
 - Add a description for the default backgrounds
 
