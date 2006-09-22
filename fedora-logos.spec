@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.4
+Version: 6.0.5
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -160,7 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Fri Sep 22 2006 Matthias Clasen <mclasen@redhat.com> - 6.0.4-1
+* Fri Sep 22 2006 Matthias Clasen <mclasen@redhat.com> - 6.0.5-1
 - Add a description for the default backgrounds
 
 * Fri Sep 22 2006 Ray Strode <rstrode@redhat.com> - 6.0.2-1
