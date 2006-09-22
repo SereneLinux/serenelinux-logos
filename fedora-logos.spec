@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.2
+Version: 6.0.3
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -76,6 +76,11 @@ for i in backgrounds/images/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
+for i in backgrounds/*.xml ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
+done
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
 for i in kde-splash/BlueCurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
@@ -135,17 +140,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-, root, root)
 %doc COPYING
-%{_datadir}/firstboot
-%{_datadir}/apps/ksplash/Themes/BlueCurve
-%{_datadir}/pixmaps
-%{_datadir}/gdm
-%{_datadir}/apps/kdm/themes/Bluecurve
-%{_datadir}/rhgb
+%{_datadir}/firstboot/*
+%{_datadir}/apps/ksplash/Themes/BlueCurve/*
+%{_datadir}/pixmaps/*
+%{_datadir}/gdm/*
+%{_datadir}/apps/kdm/themes/Bluecurve/*
+%{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
-%{_datadir}/icons
+%{_datadir}/icons/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
 %{_datadir}/backgrounds/images/*
+%{_datadir}/gnome-background-properties/*.xml
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
@@ -154,6 +160,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Sep 22 2006 Matthias Clasen <mclasen@redhat.com> - 6.0.3-1
+- Add a description for the default backgrounds
+
 * Fri Sep 22 2006 Ray Strode <rstrode@redhat.com> - 6.0.2-1
 - update screenshot in FedoraDNA theme
 
