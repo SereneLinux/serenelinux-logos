@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.6
+Version: 6.0.90
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -161,11 +161,15 @@ rm -rf $RPM_BUILD_ROOT
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
+/usr/lib/anaconda-runtime/*.jpg
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
+* Thu Jan 18 2007 Jeremy Katz <katzj@redhat.com> - 6.0.90-1
+- add syslinux splash for use with graphical menu
+
 * Fri Sep 22 2006 Than Ngo <than@redhat.com> - 6.0.6-1
 - add FedoraDNA theme for KDM
 
