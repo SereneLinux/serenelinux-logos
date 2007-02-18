@@ -1,11 +1,11 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.90
-Release: 2%{?dist}
+Version: 6.0.91
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
+BuildRoot: %{_tmppath}/%{name}-root
 BuildArch: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos = %{version}-%{release}
@@ -100,6 +100,7 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
+    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-logo-icon-transparent.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png start-here.png
     popd
   done
@@ -166,8 +167,8 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Sun Feb  4 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.90-2
-- Don't symlink the Fedora logo to gnome-logo-icon-transparent
+* Sun Feb 18 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.91-1
+- Add new RHGB images
 
 * Thu Jan 18 2007 Jeremy Katz <katzj@redhat.com> - 6.0.90-1
 - add syslinux splash for use with graphical menu
