@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.91
+Version: 6.0.92
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -167,6 +167,19 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Feb 21 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.92-1
+- New lock dialog
+
+* Tue Feb 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.91-3
+- Some more new anaconda images
+- Slight update to one rhgb image
+
+* Sun Feb 18 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.91-2
+- Add new gnome splash 
+- New firstboot images
+- Add some new anaconda images
+- Add new grub image
+
 * Sun Feb 18 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.91-1
 - Add new RHGB images
 
