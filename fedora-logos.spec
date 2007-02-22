@@ -1,11 +1,11 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 6.0.92
-Release: 1%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Obsoletes: redhat-logos
 Provides: redhat-logos = %{version}-%{release}
@@ -167,6 +167,15 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Feb 22 2007 Jeremy Katz <katzj@redhat.com> - 6.0.92-4
+- resave the syslinux splash so that it works (lalalala....)
+
+* Thu Feb 22 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.92-3
+- Improve the branded lock dialog 
+
+* Wed Feb 21 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.92-2
+- Some more new images
+
 * Wed Feb 21 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.92-1
 - New lock dialog
 
