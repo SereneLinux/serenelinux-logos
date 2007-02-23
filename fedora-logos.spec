@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.92
-Release: 4%{?dist}
+Version: 6.0.93
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -13,6 +13,10 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
+# for /usr/share/icons/Bluecurve
+Requires: redhat-artwork
+# for /usr/share/icons/hicolor
+Requires: hicolor-icon-theme
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -153,7 +157,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdm/themes/FedoraDNA/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
-%{_datadir}/icons/*
+%{_datadir}/icons/hicolor/*/apps/*
+%{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
 %{_datadir}/backgrounds/images/*
@@ -167,6 +172,12 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Feb 23 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.93-1
+- New backgrounds (dual versions still missing)
+
+* Fri Feb 23 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.92-5
+- Directory ownership fixes
+
 * Thu Feb 22 2007 Jeremy Katz <katzj@redhat.com> - 6.0.92-4
 - resave the syslinux splash so that it works (lalalala....)
 
