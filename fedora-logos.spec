@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.94
+Version: 6.0.95
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -104,7 +104,6 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
-    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-logo-icon-transparent.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png start-here.png
     popd
   done
@@ -172,6 +171,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Mar 15 2007 Ray Strode <rstrode@redhat.com> - 6.0.95-1
+- Drop weird gnome-logo-icon-transparent.png symlink that 
+  makes fedora show up where gnome logo is supposed to
+
 * Thu Mar 15 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.94-1
 - Retouch parts of the rhgb image to align it
   better with the login screen
