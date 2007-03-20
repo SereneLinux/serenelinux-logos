@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.95
+Version: 6.0.96
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -171,6 +171,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Mar 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.96-1
+- Add dual screen backgrounds
+
 * Thu Mar 15 2007 Ray Strode <rstrode@redhat.com> - 6.0.95-1
 - Drop weird gnome-logo-icon-transparent.png symlink that 
   makes fedora show up where gnome logo is supposed to
