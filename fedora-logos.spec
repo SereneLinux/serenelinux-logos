@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.96
+Version: 6.0.97
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -85,9 +85,15 @@ for i in backgrounds/*.xml ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve \
+         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
+
 for i in kde-splash/BlueCurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
+done
+
+for i in kde-splash/Echo/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
@@ -149,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc COPYING
 %{_datadir}/firstboot/*
-%{_datadir}/apps/ksplash/Themes/BlueCurve/*
+%{_datadir}/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
 %{_datadir}/gdm/*
 %{_datadir}/apps/kdm/themes/Bluecurve/*
@@ -171,6 +177,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Mar 22 2007 Than Ngo <than@redhat.com> 6.0.97-1
+- Add new Ksplash theme for Fedora 7
+
 * Tue Mar 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.96-1
 - Add dual screen backgrounds
 
