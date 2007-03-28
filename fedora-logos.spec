@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 6.0.97
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -139,9 +139,11 @@ ln -s ../../../../gdm/themes/Bluecurve/screenshot.png
 popd
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 for i in gdm/FedoraDNA/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+  ln -s ../../../../gdm/themes/FedoraDNA/$(basename $i) .
 done
+popd
 
 ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
  $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
@@ -177,6 +179,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Mar 28 2007 Matthias Clasen <mclasen@redhat.com> 6.0.97-2
+- Save some space by linking backgrounds
+
 * Thu Mar 22 2007 Than Ngo <than@redhat.com> 6.0.97-1
 - Add new Ksplash theme for Fedora 7
 
