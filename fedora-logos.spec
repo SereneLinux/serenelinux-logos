@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.97
-Release: 2%{?dist}
+Version: 6.0.98
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
@@ -179,6 +179,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Thu Apr 05 2007 Than Ngo <than@redhat.com> - 6.0.98-1
+- fix ksplash BlueCurve theme
+
 * Wed Mar 28 2007 Matthias Clasen <mclasen@redhat.com> 6.0.97-2
 - Save some space by linking backgrounds
 
