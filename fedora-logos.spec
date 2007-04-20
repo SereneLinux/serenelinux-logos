@@ -1,10 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 6.0.98
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-License: Copyright © 1999-2006 Red Hat, Inc.  All rights reserved.
+License: Copyright © 1999-2007 Red Hat, Inc.  All rights reserved.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Obsoletes: redhat-logos
@@ -150,8 +150,23 @@ ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
+for i in 16 24 32 36 48 96; do
+  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
+  cp $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
+done
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/hicolor || :
+touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve || :
+touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/Fedora || :
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/hicolor || :
+  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve || :
+  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/Fedora || :
+fi
 
 %files
 %defattr(-, root, root)
@@ -166,6 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
+%{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
 %{_datadir}/backgrounds/images/*
@@ -179,6 +195,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Apr 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-2
+- Add a Fedora icon theme
+
 * Thu Apr 05 2007 Than Ngo <than@redhat.com> - 6.0.98-1
 - fix ksplash BlueCurve theme
 
