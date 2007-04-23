@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 6.0.98
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2007 Red Hat, Inc.  All rights reserved.
@@ -159,13 +159,13 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %post
-touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/hicolor || :
-touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve || :
-touch --no-create $RPM_BUILD_ROOT%{_datadir}/icons/Fedora || :
+touch --no-create %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/Bluecurve || :
+touch --no-create %{_datadir}/icons/Fedora || :
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
-  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/hicolor || :
-  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve || :
-  gtk-update-icon-cache --quiet $RPM_BUILD_ROOT%{_datadir}/icons/Fedora || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
 fi
 
 %files
@@ -195,6 +195,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Apr 23 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-3
+- Clean up %%post scriptlet (#237428)
+
 * Fri Apr 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-2
 - Add a Fedora icon theme
 
