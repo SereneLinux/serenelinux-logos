@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 6.0.98
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 License: Copyright © 1999-2007 Red Hat, Inc.  All rights reserved.
@@ -13,6 +13,7 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
+Requires(post): coreutils
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -195,6 +196,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Jul 04 2007 Florian La Roche <laroche@redhat.com> 6.0.98-5
+- require coreutils for the %%post script
+
 * Fri Jun 15 2007 Adam Jackson <ajax@redhat.com> 6.0.98-4
 - Remove the Requires on redhat-artwork and fedora-icon-theme, and just
   multi-own the directories.  Fixes some hilarious dependency chains.
