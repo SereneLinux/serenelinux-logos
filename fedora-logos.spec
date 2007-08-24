@@ -1,10 +1,18 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 6.0.98
-Release: 5%{?dist}
+Version: 7.90.0
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-License: Copyright © 1999-2007 Red Hat, Inc.  All rights reserved.
+
+# The trademarks contained in this file are the property of Red Hat, Inc.  No
+# license to these trademarks is provided or is necessary if you merely
+# replicate the Fedora code as you downloaded it from the Fedora Project
+# website.  However, there are permissions granted for the use of these marks
+# under certain other conditions.  You may find those permissions at
+# http://fedoraproject.org/wiki/Legal/TrademarkGuidelines and COPYING file.
+License:  Not licensed.  See COPYING file for trademark permission.
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Obsoletes: redhat-logos
@@ -13,7 +21,10 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
-Requires(post): coreutils
+# for /usr/share/icons/Bluecurve
+Requires: redhat-artwork
+# for /usr/share/icons/hicolor
+Requires: hicolor-icon-theme
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -147,23 +158,8 @@ ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
-for i in 16 24 32 36 48 96; do
-  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
-  cp $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
-done
-
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-touch --no-create %{_datadir}/icons/Bluecurve || :
-touch --no-create %{_datadir}/icons/Fedora || :
-if [ -x /usr/bin/gtk-update-icon-cache ]; then
-  gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
-fi
 
 %files
 %defattr(-, root, root)
@@ -178,15 +174,10 @@ fi
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
-%{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
 %{_datadir}/backgrounds/images/*
 %{_datadir}/gnome-background-properties/*.xml
-# we multi-own these directories, so as not to require the packages that
-# provide them, thereby dragging in excess dependencies.
-%{_datadir}/icons/Bluecurve
-%{_datadir}/icons/hicolor
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
@@ -196,18 +187,10 @@ fi
 # end i386 bits
 
 %changelog
-* Wed Jul 04 2007 Florian La Roche <laroche@redhat.com> 6.0.98-5
-- require coreutils for the %%post script
-
-* Fri Jun 15 2007 Adam Jackson <ajax@redhat.com> 6.0.98-4
-- Remove the Requires on redhat-artwork and fedora-icon-theme, and just
-  multi-own the directories.  Fixes some hilarious dependency chains.
-
-* Mon Apr 23 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-3
-- Clean up %%post scriptlet (#237428)
-
-* Fri Apr 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-2
-- Add a Fedora icon theme
+* Fri Aug 24 2007 Ray Strode <rstrode@redhat.com> - 7.90.0-1
+- add a 150px variant of the fedora logo
+  (requested by Paul Frields)
+- update license field to be more clear
 
 * Thu Apr 05 2007 Than Ngo <than@redhat.com> - 6.0.98-1
 - fix ksplash BlueCurve theme
