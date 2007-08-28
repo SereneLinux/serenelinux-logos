@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.90.0
+Version: 7.90.1
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -187,6 +187,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.1-1
+- update the rhgb artwork
+
 * Fri Aug 24 2007 Ray Strode <rstrode@redhat.com> - 7.90.0-1
 - add a 150px variant of the fedora logo
   (requested by Paul Frields)
