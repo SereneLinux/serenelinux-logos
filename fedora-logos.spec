@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.90.1
+Version: 7.90.2
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -187,6 +187,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.1-2
+- update the firstboot artwork
+- update the grub artwork
+
 * Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.1-1
 - update the rhgb artwork
 
