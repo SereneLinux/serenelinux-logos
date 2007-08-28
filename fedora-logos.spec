@@ -187,7 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.1-2
+* Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.2-1
 - update the firstboot artwork
 - update the grub artwork
 
