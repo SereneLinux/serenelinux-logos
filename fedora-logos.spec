@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.90.2
+Version: 7.92.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -83,15 +83,15 @@ for i in applications/screensavers/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
-for i in backgrounds/images/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
-for i in backgrounds/*.xml ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
-done
+#mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
+#for i in backgrounds/images/* ; do
+#  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
+#done
+#
+#mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
+#for i in backgrounds/*.xml ; do
+#  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
+#done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve \
          $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
@@ -176,8 +176,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
-%{_datadir}/backgrounds/images/*
-%{_datadir}/gnome-background-properties/*.xml
+#%{_datadir}/backgrounds/images/*
+#%{_datadir}/gnome-background-properties/*.xml
 
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
@@ -187,6 +187,10 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Tue Aug 28 2007 Máirín Duffy <duffy@redhat.com> - 7.92.0-1
+- update the anaconda artwork
+- changed default backgrounds
+
 * Mon Aug 27 2007 Ray Strode <rstrode@redhat.com> - 7.90.2-1
 - update the firstboot artwork
 - update the grub artwork
