@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 7.92.0
-Release: 2%{?dist}
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -187,9 +187,6 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Tue Aug 28 2007 Máirín Duffy <duffy@redhat.com> - 7.92.0-2
-- retag
-
 * Tue Aug 28 2007 Máirín Duffy <duffy@redhat.com> - 7.92.0-1
 - update the anaconda artwork
 - changed default backgrounds
