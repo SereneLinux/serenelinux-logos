@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 7.92.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 Source1: infinity-grub.xpm.gz
@@ -190,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
-* Fri Aug 31 2007 Jeremy Katz <katzj@redhat.com> - 7.92.0-2
+* Fri Aug 31 2007 Jeremy Katz <katzj@redhat.com> - 7.92.0-3
 - fix grub splash image to be an actual image
 
 * Tue Aug 28 2007 Máirín Duffy <duffy@redhat.com> - 7.92.0-1
