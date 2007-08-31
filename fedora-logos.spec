@@ -1,9 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 7.92.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
+Source1: infinity-grub.xpm.gz
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -57,6 +58,8 @@ done)
 mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
+# FIXME: fix bad tarball
+install -m %{SOURCE1} $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
 for i in firstboot/* ; do
@@ -187,6 +190,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Fri Aug 31 2007 Jeremy Katz <katzj@redhat.com> - 7.92.0-2
+- fix grub splash image to be an actual image
+
 * Tue Aug 28 2007 Máirín Duffy <duffy@redhat.com> - 7.92.0-1
 - update the anaconda artwork
 - changed default backgrounds
