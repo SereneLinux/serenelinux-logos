@@ -59,7 +59,7 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 # FIXME: fix bad tarball
-install -m %{SOURCE1} $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
+install -m 644 %{SOURCE1} $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
 for i in firstboot/* ; do
