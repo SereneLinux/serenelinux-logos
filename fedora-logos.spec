@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 7.92.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 Source1: infinity-grub.xpm.gz
@@ -22,10 +22,7 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
-# for /usr/share/icons/Bluecurve
-Requires: redhat-artwork
-# for /usr/share/icons/hicolor
-Requires: hicolor-icon-theme
+Requires(post): coreutils
 
 %description
 The fedora-logos package (the "Packages") contain image files which
@@ -161,8 +158,23 @@ ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
+for i in 16 24 32 36 48 96; do
+  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
+  cp $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
+done
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+touch --no-create %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/Bluecurve || :
+touch --no-create %{_datadir}/icons/Fedora || :
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+  gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
+fi
 
 %files
 %defattr(-, root, root)
@@ -177,11 +189,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
+%{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
 %{_datadir}/applications/screensavers/*
 #%{_datadir}/backgrounds/images/*
 #%{_datadir}/gnome-background-properties/*.xml
-
+# we multi-own these directories, so as not to require the packages that
+# provide them, thereby dragging in excess dependencies.
+%{_datadir}/icons/Bluecurve
+%{_datadir}/icons/hicolor
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
 /usr/lib/anaconda-runtime/*.jpg
@@ -190,6 +206,9 @@ rm -rf $RPM_BUILD_ROOT
 # end i386 bits
 
 %changelog
+* Wed Sep  5 2007 Jeremy Katz <katzj@redhat.com> - 7.92.0-4
+- merge back changes that got lost
+
 * Fri Aug 31 2007 Jeremy Katz <katzj@redhat.com> - 7.92.0-3
 - fix grub splash image to be an actual image
 
@@ -208,6 +227,19 @@ rm -rf $RPM_BUILD_ROOT
 - add a 150px variant of the fedora logo
   (requested by Paul Frields)
 - update license field to be more clear
+
+* Wed Jul 04 2007 Florian La Roche <laroche@redhat.com> 6.0.98-5
+- require coreutils for the %%post script
+
+* Fri Jun 15 2007 Adam Jackson <ajax@redhat.com> 6.0.98-4
+- Remove the Requires on redhat-artwork and fedora-icon-theme, and just
+  multi-own the directories.  Fixes some hilarious dependency chains.
+
+* Mon Apr 23 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-3
+- Clean up %%post scriptlet (#237428)
+
+* Fri Apr 20 2007 Matthias Clasen <mclasen@redhat.com> - 6.0.98-2
+- Add a Fedora icon theme
 
 * Thu Apr 05 2007 Than Ngo <than@redhat.com> - 6.0.98-1
 - fix ksplash BlueCurve theme
