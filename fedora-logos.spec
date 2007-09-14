@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 7.92.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -203,6 +203,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Sep 14 2007 Bill Nottingham <notting@redhat.com> - 7.92.1-2-
+- regen tarball
+
 * Thu Sep 13 2007 Bill Nottingham <notting@redhat.com> - 7.92.1-1
 - add the powered-by logo (#250676)
 
