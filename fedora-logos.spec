@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.92.3
+Version: 7.92.4
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -135,6 +135,11 @@ for i in gdm/FedoraDNA/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
+for i in gdm/FedoraInfinity/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
+done
+
 
 # kdmtheme
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
@@ -203,6 +208,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Sep 19 2007 Matthias Clasen <mclasen@redhat.com> - 7.92.4-1
+- Acutally install the gdm theme
+
 * Wed Sep 19 2007 Matthias Clasen <mclasen@redhat.com> - 7.92.3-1
 - Add infinity gdm theme
 
