@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.92.1
-Release: 2%{?dist}
+Version: 7.92.2
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -203,8 +203,8 @@ fi
 # end i386 bits
 
 %changelog
-* Fri Sep 14 2007 Bill Nottingham <notting@redhat.com> - 7.92.1-2-
-- regen tarball
+* Wed Sep 19 2007 Matthias Clasen <mclasen@redhat.com> - 7.92.2-1
+- Add infinity lock dialog
 
 * Thu Sep 13 2007 Bill Nottingham <notting@redhat.com> - 7.92.1-1
 - add the powered-by logo (#250676)
