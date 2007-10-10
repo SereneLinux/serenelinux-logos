@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.92.4
+Version: 7.93.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -208,6 +208,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 10 2007 Ray Strode <rstrode@redhat.com> - 7.93.0-1
+- Install fedora 7 logo in the right place
+
 * Wed Sep 19 2007 Matthias Clasen <mclasen@redhat.com> - 7.92.4-1
 - Acutally install the gdm theme
 
