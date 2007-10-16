@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.94.0
+Version: 7.95.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -208,6 +208,9 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Oct 16 2007 Ray Strode <rstrode@redhat.com> - 7.95.0-1
+- actually drop bluecurve gdm fedora logo images that aren't trademarked
+
 * Wed Oct 10 2007 Ray Strode <rstrode@redhat.com> - 7.94.0-1
 - drop bluecurve gdm fedora logo images that aren't trademarked
 
