@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.95.0
+Version: 7.96.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -120,11 +120,6 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
-for i in gdm/Bluecurve/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/Bluecurve
-done
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
 for i in gdm/FedoraBubbles/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
@@ -139,14 +134,6 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
 for i in gdm/FedoraInfinity/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
 done
-
-
-# kdmtheme
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
-pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/Bluecurve
-ln -s ../../../../gdm/themes/Bluecurve/rh_logo-header.png .
-ln -s ../../../../gdm/themes/Bluecurve/screenshot.png
-popd
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
@@ -185,7 +172,6 @@ fi
 %{_datadir}/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
 %{_datadir}/gdm/*
-%{_datadir}/apps/kdm/themes/Bluecurve/*
 %{_datadir}/apps/kdm/themes/FedoraDNA/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
@@ -208,6 +194,10 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Oct 16 2007 Ray Strode <rstrode@redhat.com> - 7.96.0-1
+- Fix up some %%install goo
+- drop bluecurve kdm fedora logo images too
+
 * Tue Oct 16 2007 Ray Strode <rstrode@redhat.com> - 7.95.0-1
 - actually drop bluecurve gdm fedora logo images that aren't trademarked
 
