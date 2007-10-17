@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 7.96.0
+Version: 8.0.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -130,11 +130,6 @@ for i in gdm/FedoraDNA/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
-for i in gdm/FedoraInfinity/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraInfinity
-done
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 for i in gdm/FedoraDNA/* ; do
@@ -194,6 +189,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 17 2007 Ray Strode <rstrode@redhat.com> - 8.0.0-1
+- Drop Fedora Infinity gdm theme
+
 * Tue Oct 16 2007 Ray Strode <rstrode@redhat.com> - 7.96.0-1
 - Fix up some %%install goo
 - drop bluecurve kdm fedora logo images too
