@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 8.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -155,9 +155,15 @@ touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
 touch --no-create %{_datadir}/icons/Fedora || :
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
-  gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
+  if [ -f %{_datadir}/icons/hicolor/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+  fi
+  if [ -f %{_datadir}/icons/Bluecurve/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
+  fi
+  if [ -f %{_datadir}/icons/Fedora/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
+  fi
 fi
 
 %files
@@ -189,6 +195,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Oct 19 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.0-2
+- Silence %%post (#340551)
+
 * Wed Oct 17 2007 Ray Strode <rstrode@redhat.com> - 8.0.0-1
 - Drop Fedora Infinity gdm theme
 
