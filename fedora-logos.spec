@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 8.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -24,8 +24,8 @@ Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
 
 %description
-The fedora-logos package (the "Packages") contain image files which
-incorporate the Fedora trademark and the RPM logo (the "Marks").
+The fedora-logos package contains image files which incorporate the
+Fedora trademark and the RPM logo (the "Marks").
 The Marks are trademarks or registered trademarks of Red Hat, Inc.
 in the United States and other countries and are used by permission.
 
@@ -195,6 +195,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Oct 29 2007 Stepan Kasal <skasal@redhat.com> - 8.0.0-3
+- Fix typo in the description.
+
 * Fri Oct 19 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.0-2
 - Silence %%post (#340551)
 
