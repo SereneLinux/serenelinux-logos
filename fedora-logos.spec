@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.0.0
-Release: 3%{?dist}
+Version: 8.0.2
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -24,8 +24,8 @@ Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
 
 %description
-The fedora-logos package contains image files which incorporate the
-Fedora trademark and the RPM logo (the "Marks").
+The fedora-logos package (the "Packages") contain image files which
+incorporate the Fedora trademark and the RPM logo (the "Marks").
 The Marks are trademarks or registered trademarks of Red Hat, Inc.
 in the United States and other countries and are used by permission.
 
@@ -91,7 +91,8 @@ done
 #done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve \
-         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
+         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo \
+         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/FedoraInfinity
 
 for i in kde-splash/BlueCurve/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
@@ -99,6 +100,10 @@ done
 
 for i in kde-splash/Echo/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
+done
+
+for i in kde-splash/FedoraInfinity/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/FedoraInfinity
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
@@ -195,8 +200,8 @@ fi
 # end i386 bits
 
 %changelog
-* Mon Oct 29 2007 Stepan Kasal <skasal@redhat.com> - 8.0.0-3
-- Fix typo in the description.
+* Mon Oct 29 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.2-1
+- Add Infinity splash screens for KDE and Gnome
 
 * Fri Oct 19 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.0-2
 - Silence %%post (#340551)
