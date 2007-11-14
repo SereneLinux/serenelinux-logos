@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.0.2
+Version: 8.0.3
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -24,8 +24,8 @@ Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
 
 %description
-The fedora-logos package (the "Packages") contain image files which
-incorporate the Fedora trademark and the RPM logo (the "Marks").
+The fedora-logos package contains image files which incorporate the 
+Fedora trademark and the RPM logo (the "Marks").
 The Marks are trademarks or registered trademarks of Red Hat, Inc.
 in the United States and other countries and are used by permission.
 
@@ -135,6 +135,11 @@ for i in gdm/FedoraDNA/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraFlyingHigh
+for i in gdm/FedoraFlyingHigh/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraFlyingHigh
+done
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
 for i in gdm/FedoraDNA/* ; do
@@ -200,6 +205,12 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Nov 14 2007 Ray Strode <rstrode@redhat.com> - 8.0.3-1
+- Install Fedora Flying High GDM logo (woops, bug 382281)
+
+* Mon Oct 29 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.2-2
+- Fix a typo in the description (Stepan Kasal)
+
 * Mon Oct 29 2007 Matthias Clasen <mclasen@redhat.com> - 8.0.2-1
 - Add Infinity splash screens for KDE and Gnome
 
