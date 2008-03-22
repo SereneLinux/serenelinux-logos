@@ -55,6 +55,13 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
+for i in gdm/FedoraDNA/* ; do
+  ln -s ../../../../gdm/themes/FedoraDNA/$(basename $i) .
+done
+popd
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
 for i in firstboot/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
