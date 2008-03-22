@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.0.3
+Version: 8.0.90
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -125,28 +125,6 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
-for i in gdm/FedoraBubbles/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraBubbles
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
-for i in gdm/FedoraDNA/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraDNA
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraFlyingHigh
-for i in gdm/FedoraFlyingHigh/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gdm/themes/FedoraFlyingHigh
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
-pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
-for i in gdm/FedoraDNA/* ; do
-  ln -s ../../../../gdm/themes/FedoraDNA/$(basename $i) .
-done
-popd
-
 ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
  $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
 
@@ -182,7 +160,6 @@ fi
 %{_datadir}/firstboot/*
 %{_datadir}/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
-%{_datadir}/gdm/*
 %{_datadir}/apps/kdm/themes/FedoraDNA/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
@@ -205,6 +182,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Mar 21 2008 Matthias Clasen <mclasen@redhat.com> - 8.0.90-1
+- Don't ship parts of gdm themes that gdm doesn't use anymore
+
 * Wed Nov 14 2007 Ray Strode <rstrode@redhat.com> - 8.0.3-1
 - Install Fedora Flying High GDM logo (woops, bug 382281)
 
