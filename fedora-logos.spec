@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.0.90
-Release: 1%{?dist}
+Version: 8.0.3
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -182,7 +182,7 @@ fi
 # end i386 bits
 
 %changelog
-* Fri Mar 21 2008 Matthias Clasen <mclasen@redhat.com> - 8.0.90-1
+* Fri Mar 21 2008 Matthias Clasen <mclasen@redhat.com> - 8.0.3-2
 - Don't ship parts of gdm themes that gdm doesn't use anymore
 
 * Wed Nov 14 2007 Ray Strode <rstrode@redhat.com> - 8.0.3-1
