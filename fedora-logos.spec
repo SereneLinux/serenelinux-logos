@@ -1,9 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 8.0.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
+Source1: waves-ksplashx.tar.bz2
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -33,7 +34,7 @@ See the included COPYING file for information on copying and
 redistribution.
 
 %prep
-%setup -q
+%setup -q -a 1
 
 %build
 
@@ -90,14 +91,13 @@ done
 #  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
 #done
 
-# being worked on...
-# mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves/1600x1200
-# for i in kde-splash/Waves/{Theme.rc,Preview.png} ; do
-#   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves
-# done
-# for i in kde-splash/Waves/1600x1200/* ; do
-#   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves/1600x1200
-# done
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves/1600x1200
+for i in kde-splash/Waves/{Theme.rc,Preview.png} ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves
+done
+for i in kde-splash/Waves/1600x1200/* ; do
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves/1600x1200
+done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
 for i in pixmaps/* ; do
@@ -151,7 +151,7 @@ fi
 %defattr(-, root, root)
 %doc COPYING
 %{_datadir}/firstboot/*
-#%{_datadir}/apps/ksplash/Themes/*
+%{_datadir}/kde4/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
@@ -174,6 +174,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Mar 27 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 8.0.3-4
+- Include Waves KSplash theme for KDE 4
+
 * Thu Mar 27 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 8.0.3-3
 - Don't ship KDE 3 KSplash and KDM themes (which don't work in KDE 4)
 
