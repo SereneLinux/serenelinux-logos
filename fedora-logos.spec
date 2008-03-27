@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 8.0.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 
@@ -55,13 +55,6 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
-pushd $RPM_BUILD_ROOT%{_datadir}/apps/kdm/themes/FedoraDNA
-for i in gdm/FedoraDNA/* ; do
-  ln -s ../../../../gdm/themes/FedoraDNA/$(basename $i) .
-done
-popd
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
 for i in firstboot/* ; do
   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
@@ -97,21 +90,14 @@ done
 #  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
 #done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve \
-         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo \
-         $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/FedoraInfinity
-
-for i in kde-splash/BlueCurve/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/BlueCurve
-done
-
-for i in kde-splash/Echo/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Echo
-done
-
-for i in kde-splash/FedoraInfinity/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/FedoraInfinity
-done
+# being worked on...
+# mkdir -p $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves/1600x1200
+# for i in kde-splash/Waves/{Theme.rc,Preview.png} ; do
+#   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves
+# done
+# for i in kde-splash/Waves/1600x1200/* ; do
+#   install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/apps/ksplash/Themes/Waves/1600x1200
+# done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
 for i in pixmaps/* ; do
@@ -165,9 +151,8 @@ fi
 %defattr(-, root, root)
 %doc COPYING
 %{_datadir}/firstboot/*
-%{_datadir}/apps/ksplash/Themes/*
+#%{_datadir}/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
-%{_datadir}/apps/kdm/themes/FedoraDNA/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
@@ -189,6 +174,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Mar 27 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 8.0.3-3
+- Don't ship KDE 3 KSplash and KDM themes (which don't work in KDE 4)
+
 * Fri Mar 21 2008 Matthias Clasen <mclasen@redhat.com> - 8.0.3-2
 - Don't ship parts of gdm themes that gdm doesn't use anymore
 
