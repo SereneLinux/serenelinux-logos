@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.0.3
-Release: 4%{?dist}
+Version: 8.99.0
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 Source1: waves-ksplashx.tar.bz2
@@ -174,6 +174,9 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Apr  1 2008 Ray Strode <rstrode@redhat.com> - 8.99.0-1
+- Add F-9 rhgb artwork
+
 * Thu Mar 27 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 8.0.3-4
 - Include Waves KSplash theme for KDE 4
 
