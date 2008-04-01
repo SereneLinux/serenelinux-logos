@@ -1,10 +1,9 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.99.0
+Version: 8.99.1
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-Source1: waves-ksplashx.tar.bz2
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -34,7 +33,7 @@ See the included COPYING file for information on copying and
 redistribution.
 
 %prep
-%setup -q -a 1
+%setup -q
 
 %build
 
@@ -174,6 +173,11 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Apr  1 2008 Ray Strode <rstrode@redhat.com> - 8.99.1-1
+- Add grub, firstboot and anaconda artwork
+- merge kde artwork from downstream
+- drop unused images
+
 * Tue Apr  1 2008 Ray Strode <rstrode@redhat.com> - 8.99.0-1
 - Add F-9 rhgb artwork
 
