@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.99.1
+Version: 8.99.2
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -55,9 +55,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
 for i in firstboot/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/pixmaps
+  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/rhgb
@@ -149,7 +149,7 @@ fi
 %files
 %defattr(-, root, root)
 %doc COPYING
-%{_datadir}/firstboot/*
+%{_datadir}/firstboot/themes/fedora-waves
 %{_datadir}/kde4/apps/ksplash/Themes/*
 %{_datadir}/pixmaps/*
 %{_datadir}/rhgb/*
@@ -173,6 +173,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Apr  2 2008 Ray Strode <rstrode@redhat.com> - 8.99.2-1
+- firstboot changed artwork locations
+
 * Tue Apr  1 2008 Ray Strode <rstrode@redhat.com> - 8.99.1-1
 - Add grub, firstboot and anaconda artwork
 - merge kde artwork from downstream
