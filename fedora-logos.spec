@@ -1,9 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 8.99.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
+Patch1: fedora-logos-8.99.2-ksplash_FedoraWaves.patch
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -35,6 +36,9 @@ redistribution.
 %prep
 %setup -q
 
+mv kde-splash/Waves kde-splash/FedoraWaves
+%patch1 -p1 -b .ksplash_FedoraWaves
+
 %build
 
 %install
@@ -42,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat
 for i in redhat-pixmaps/*; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat
 done
 (cd $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat; \
 for i in *-mini.xpm; do \
@@ -52,62 +56,62 @@ done)
 
 # should be ifarch i386
 mkdir -p $RPM_BUILD_ROOT/boot/grub
-install -m 644 bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
+install -p -m 644 -D bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
 for i in firstboot/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/rhgb
 for i in rhgb/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/rhgb
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/rhgb
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 for i in gnome-splash/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
 for i in gnome-screensaver/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
 for i in applications/screensavers/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
 done
 
 #mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 #for i in backgrounds/images/* ; do
-#  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
+#  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
 #done
 #
 #mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
 #for i in backgrounds/*.xml ; do
-#  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
+#  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
 #done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves/1600x1200
-for i in kde-splash/Waves/{Theme.rc,Preview.png} ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves/1600x1200
+for i in kde-splash/FedoraWaves/{Theme.rc,Preview.png} ; do
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves
 done
-for i in kde-splash/Waves/1600x1200/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/Waves/1600x1200
+for i in kde-splash/FedoraWaves/1600x1200/* ; do
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves/1600x1200
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
 for i in pixmaps/* ; do
-  install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
 done
 
 for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
   for i in icons/hicolor/$size/apps/* ; do
-    install -m 644 $i $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
+    install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
     pushd $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
     ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
@@ -124,7 +128,9 @@ ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
 
 for i in 16 24 32 36 48 96; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
-  cp $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
+  # why not use (sym)links like Bluecurve above?  -- Rex
+  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
+  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/${i}x${i}/places/start-here.png 
 done
 
 %clean
@@ -134,6 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
 touch --no-create %{_datadir}/icons/Fedora || :
+touch --no-create %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE ||:
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/hicolor/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
@@ -151,6 +158,7 @@ fi
 %doc COPYING
 %{_datadir}/firstboot/themes/fedora-waves
 %{_datadir}/kde4/apps/ksplash/Themes/*
+%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_datadir}/pixmaps/*
 %{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
@@ -173,6 +181,10 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Apr 10 2008 Rex Dieter <rdieter@fedoraproject.org> - 8.99.2-2
+- kde-splash: rename to FedoraWaves, fixup animation
+- include start-here icons for Fedora-KDE icon theme
+
 * Wed Apr  2 2008 Ray Strode <rstrode@redhat.com> - 8.99.2-1
 - firstboot changed artwork locations
 

@@ -1,0 +1,53 @@
+diff -up fedora-logos-8.99.2/kde-splash/FedoraWaves/1600x1200/description.txt.FedoraWaves fedora-logos-8.99.2/kde-splash/FedoraWaves/1600x1200/description.txt
+--- fedora-logos-8.99.2/kde-splash/FedoraWaves/1600x1200/description.txt.FedoraWaves	2008-04-02 10:13:27.000000000 -0500
++++ fedora-logos-8.99.2/kde-splash/FedoraWaves/1600x1200/description.txt	2008-04-09 13:55:07.000000000 -0500
+@@ -2,19 +2,19 @@ SCALE OFF
+ GEOMETRY_REL CC 0 0 CC 490 278
+ IMAGE 0 0 background.png
+ 
+-WAIT_STATE kded
+ ANIM 1 193 215 11 kded.png 25 1
++WAIT_STATE kded
+ 
+-WAIT_STATE confupdate
+ ANIM 2 218 215 11 confupdate.png 25 1
++WAIT_STATE confupdate
+ 
+-WAIT_STATE kcminit
+ ANIM 3 243 215 11 kcminit.png 25 1
++WAIT_STATE kcminit
+ 
++ANIM 4 268 215 11 ksmserver.png 25 1
+ WAIT_STATE ksmserver
+-ANIM 3 268 215 11 ksmserver.png 25 1
+ 
++ANIM 5 293 215 11 wm.png 25 1
+ WAIT_STATE wm
+-ANIM 3 293 215 11 wm.png 25 1
+ 
+-WAIT_STATE desktop
+\ No newline at end of file
++WAIT_STATE desktop
+diff -up fedora-logos-8.99.2/Makefile.FedoraWaves fedora-logos-8.99.2/Makefile
+--- fedora-logos-8.99.2/Makefile.FedoraWaves	2008-04-02 10:13:27.000000000 -0500
++++ fedora-logos-8.99.2/Makefile	2008-04-10 08:41:13.000000000 -0500
+@@ -22,7 +22,7 @@ archive: 
+ 	mkdir -p $$DISTDIR/firstboot ; \
+ 	mkdir -p $$DISTDIR/rhgb ; \
+ 	mkdir -p $$DISTDIR/gnome-splash ; \
+-	mkdir -p $$DISTDIR/kde-splash/Waves/1600x1200 ; \
++	mkdir -p $$DISTDIR/kde-splash/FedoraWaves/1600x1200 ; \
+ 	mkdir -p $$DISTDIR/pixmaps ; \
+ 	mkdir -p $$DISTDIR/gdm ; \
+ 	mkdir -p $$DISTDIR/anaconda ; \
+@@ -44,8 +44,8 @@ archive: 
+ 	cp -f $$SRCDIR/firstboot/*.png firstboot ; \
+ 	cp -f $$SRCDIR/rhgb/*.png rhgb ; \
+ 	cp -f $$SRCDIR/gnome-splash/*.png gnome-splash ; \
+-	cp -f $$SRCDIR/kde-splash/Waves/* kde-splash/Waves/ ; \
+-	cp -f $$SRCDIR/kde-splash/Waves/1600x1200/* kde-splash/Waves/1600x1200; \
++	cp -f $$SRCDIR/kde-splash/FedoraWaves/* kde-splash/FedoraWaves/ ; \
++	cp -f $$SRCDIR/kde-splash/FedoraWaves/1600x1200/* kde-splash/FedoraWaves/1600x1200; \
+ 	cp -f $$SRCDIR/pixmaps/*.{png,svg} pixmaps ; \
+ 	cp -af $$SRCDIR/gdm/* gdm; \
+ 	cp -f $$SRCDIR/anaconda/* anaconda ; \
