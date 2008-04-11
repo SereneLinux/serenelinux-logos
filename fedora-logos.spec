@@ -1,10 +1,9 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 8.99.2
-Release: 2%{?dist}
+Version: 9.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-Patch1: fedora-logos-8.99.2-ksplash_FedoraWaves.patch
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -35,9 +34,6 @@ redistribution.
 
 %prep
 %setup -q
-
-mv kde-splash/Waves kde-splash/FedoraWaves
-%patch1 -p1 -b .ksplash_FedoraWaves
 
 %build
 
@@ -181,6 +177,10 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Apr 11 2008 Ray Strode <rstrode@redhat.com> - 9.0.0-1
+- update grub splash screen to not have sulfur and look better
+  on EFI systems
+
 * Thu Apr 10 2008 Rex Dieter <rdieter@fedoraproject.org> - 8.99.2-2
 - kde-splash: rename to FedoraWaves, fixup animation
 - include start-here icons for Fedora-KDE icon theme
