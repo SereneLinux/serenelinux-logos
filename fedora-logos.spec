@@ -1,9 +1,11 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 9.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
+# fixed KDE splash screen background
+Source1: background.png
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -34,6 +36,7 @@ redistribution.
 
 %prep
 %setup -q
+cp -pf %{SOURCE1} kde-splash/FedoraWaves/1600x1200/background.png
 
 %build
 
@@ -177,6 +180,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Apr 28 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 9.0.0-2
+- use bg image without rounded corners for kde-splash (Pavel Shevchuk, #443308)
+
 * Fri Apr 11 2008 Ray Strode <rstrode@redhat.com> - 9.0.0-1
 - update grub splash screen to not have sulfur and look better
   on EFI systems
