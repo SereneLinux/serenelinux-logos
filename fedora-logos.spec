@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 9.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 # fixed KDE splash screen background
@@ -120,9 +120,6 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
-ln -s ../../firstboot/pixmaps/shadowman-round-48.png \
- $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat/
-
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
 for i in 16 24 32 36 48 96; do
@@ -180,6 +177,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Apr 28 2008 Matthias Clasen <mclasen@redhat.com> - 9.0.0-3
+- Remove a broken symlink (#444298)
+
 * Mon Apr 28 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> - 9.0.0-2
 - use bg image without rounded corners for kde-splash (Pavel Shevchuk, #443308)
 
