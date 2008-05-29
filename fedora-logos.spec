@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.0.0
-Release: 3%{?dist}
+Version: 9.0.1
+Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
 # fixed KDE splash screen background
@@ -177,6 +177,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu May 29 2008 Ray Strode <rstrode@redhat.com> - 9.0.1-1
+- Add logo with white type face
+
 * Mon Apr 28 2008 Matthias Clasen <mclasen@redhat.com> - 9.0.0-3
 - Remove a broken symlink (#444298)
 
