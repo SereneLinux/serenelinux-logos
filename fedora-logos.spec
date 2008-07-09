@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.0.1
+Version: 9.99.0
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -61,11 +61,6 @@ install -p -m 644 -D bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/spl
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
 for i in firstboot/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/rhgb
-for i in rhgb/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/rhgb
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -156,7 +151,6 @@ fi
 %{_datadir}/kde4/apps/ksplash/Themes/*
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_datadir}/pixmaps/*
-%{_datadir}/rhgb/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
@@ -177,6 +171,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Jul  9 2008 Matthias Clasen <mclasen@redhat.com> - 9.99.0-1
+- rhgb is no more
+
 * Thu May 29 2008 Ray Strode <rstrode@redhat.com> - 9.0.1-1
 - Add logo with white type face
 
