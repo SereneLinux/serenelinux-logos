@@ -1,11 +1,9 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.99.1
+Version: 9.99.2
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
-# fixed KDE splash screen background
-Source1: background.png
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -36,7 +34,6 @@ redistribution.
 
 %prep
 %setup -q
-cp -pf %{SOURCE1} kde-splash/FedoraWaves/1600x1200/background.png
 
 %build
 
@@ -173,6 +170,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Aug 25 2008 Ray Strode <rstrode@redhat.com> - 9.99.2-1
+- Move kde background upstream
+
 * Mon Aug 25 2008 Ray Strode <rstrode@redhat.com> - 9.99.1-1
 - add a logo for xfce (bug 445986)
 
