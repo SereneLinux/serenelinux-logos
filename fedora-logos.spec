@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.99.0
+Version: 9.99.1
 Release: 1%{?dist}
 Group: System Environment/Base
 Source0: fedora-logos-%{version}.tar.bz2
@@ -115,6 +115,8 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
+
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
 for i in 16 24 32 36 48 96; do
@@ -171,6 +173,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Aug 25 2008 Ray Strode <rstrode@redhat.com> - 9.99.1-1
+- add a logo for xfce (bug 445986)
+
 * Wed Jul  9 2008 Matthias Clasen <mclasen@redhat.com> - 9.99.0-1
 - rhgb is no more
 
