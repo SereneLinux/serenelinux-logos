@@ -1,9 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.99.2
+Version: 9.99.3
 Release: 1%{?dist}
 Group: System Environment/Base
-Source0: fedora-logos-%{version}.tar.bz2
+URL: http://git.fedorahosted.org/git/fedora-logos.git/
+Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -113,6 +114,7 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
+install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
@@ -170,6 +172,10 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Sep 10 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 9.99.3-1
+- move to its new home
+- package up xfce4_xicon1.svg (bz 445986)
+
 * Mon Aug 25 2008 Ray Strode <rstrode@redhat.com> - 9.99.2-1
 - Move kde background upstream
 
