@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.99.3
+Version: 9.99.4
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -172,6 +172,10 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Sep 23 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 9.99.4-1
+- update to 9.99.4
+- replace firstboot workstation logo with something modern for F10
+
 * Wed Sep 10 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 9.99.3-1
 - move to its new home
 - package up xfce4_xicon1.svg (bz 445986)
