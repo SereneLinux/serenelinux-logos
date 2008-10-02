@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 9.99.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -69,11 +69,6 @@ done
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
 for i in gnome-screensaver/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
-for i in applications/screensavers/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/applications/screensavers
 done
 
 #mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
@@ -157,7 +152,6 @@ fi
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
-%{_datadir}/applications/screensavers/*
 #%{_datadir}/backgrounds/images/*
 #%{_datadir}/gnome-background-properties/*.xml
 # we multi-own these directories, so as not to require the packages that
@@ -172,6 +166,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Oct  2 2008 Matthias Clasen  <mclasen@redaht.com> - 9.99.4-2
+- Don't ship the screensaver desktop file thats in fedora-screensaver-theme
+
 * Tue Sep 23 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 9.99.4-1
 - update to 9.99.4
 - replace firstboot workstation logo with something modern for F10
