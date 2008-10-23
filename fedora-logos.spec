@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 9.99.4
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -108,6 +108,11 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
+pushd $RPM_BUILD_ROOT%{_sysconfdir}
+ln -s %{_datadir}/icons/hicolor/16x16/apps/fedora-logo-icon.png favicon.png
+popd
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 
@@ -143,6 +148,7 @@ fi
 %files
 %defattr(-, root, root)
 %doc COPYING
+%config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-waves
 %{_datadir}/kde4/apps/ksplash/Themes/*
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
@@ -166,6 +172,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Oct 23 2008 Colin Walters <walters@verbum.org> - 0.99.4-3
+- Install logo as /etc/favicon.png (http://cgwalters.livejournal.com/19030.html)
+
 * Thu Oct  2 2008 Matthias Clasen  <mclasen@redaht.com> - 9.99.4-2
 - Don't ship the screensaver desktop file thats in fedora-screensaver-theme
 
