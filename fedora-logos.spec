@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 9.99.4
-Release: 3%{?dist}
+Version: 10.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -53,12 +53,12 @@ done)
 
 # should be ifarch i386
 mkdir -p $RPM_BUILD_ROOT/boot/grub
-install -p -m 644 -D bootloader/grub-splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
+install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-solar
 for i in firstboot/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-waves
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-solar
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -69,24 +69,6 @@ done
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
 for i in gnome-screensaver/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
-done
-
-#mkdir -p $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
-#for i in backgrounds/images/* ; do
-#  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/backgrounds/images
-#done
-#
-#mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
-#for i in backgrounds/*.xml ; do
-#  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-background-properties
-#done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves/1600x1200
-for i in kde-splash/FedoraWaves/{Theme.rc,Preview.png} ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves
-done
-for i in kde-splash/FedoraWaves/1600x1200/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/kde4/apps/ksplash/Themes/FedoraWaves/1600x1200
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
@@ -149,8 +131,7 @@ fi
 %defattr(-, root, root)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
-%{_datadir}/firstboot/themes/fedora-waves
-%{_datadir}/kde4/apps/ksplash/Themes/*
+%{_datadir}/firstboot/themes/fedora-solar
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
@@ -158,12 +139,10 @@ fi
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
-#%{_datadir}/backgrounds/images/*
-#%{_datadir}/gnome-background-properties/*.xml
 # we multi-own these directories, so as not to require the packages that
 # provide them, thereby dragging in excess dependencies.
-%{_datadir}/icons/Bluecurve
-%{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/Bluecurve
+%dir %{_datadir}/icons/hicolor
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
 /usr/lib/anaconda-runtime/*.jpg
@@ -172,6 +151,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Oct 24 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.0-1
+- New solar art
+
 * Thu Oct 23 2008 Colin Walters <walters@verbum.org> - 0.99.4-3
 - Install logo as /etc/favicon.png (http://cgwalters.livejournal.com/19030.html)
 
