@@ -1,10 +1,11 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 10.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
+Source1: SolarComet-fedora.png
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -23,6 +24,8 @@ Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
+# For _kde4_appsdir macro:
+BuildRequires: kde-filesystem
 
 %description
 The fedora-logos package contains image files which incorporate the 
@@ -107,6 +110,9 @@ for i in 16 24 32 36 48 96; do
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/${i}x${i}/places/start-here.png 
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024
+install -p -m 644 %{SOURCE1} $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -133,6 +139,7 @@ fi
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-solar
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
+%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
@@ -151,6 +158,9 @@ fi
 # end i386 bits
 
 %changelog
+* Sun Oct 26 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 10.0.0-2
+- Add (current version of) Fedora logo for SolarComet KSplash theme
+
 * Fri Oct 24 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.0-1
 - New solar art
 
