@@ -1,11 +1,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 10.0.0
-Release: 2%{?dist}
+Version: 10.0.1
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
-Source1: SolarComet-fedora.png
 
 # The trademarks contained in this file are the property of Red Hat, Inc.  No
 # license to these trademarks is provided or is necessary if you merely
@@ -111,7 +110,7 @@ for i in 16 24 32 36 48 96; do
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024
-install -p -m 644 %{SOURCE1} $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
+install -p -m 644 kde-splash/SolarComet-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -146,10 +145,6 @@ fi
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
-# we multi-own these directories, so as not to require the packages that
-# provide them, thereby dragging in excess dependencies.
-%dir %{_datadir}/icons/Bluecurve
-%dir %{_datadir}/icons/hicolor
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
 /usr/lib/anaconda-runtime/*.jpg
@@ -157,7 +152,41 @@ fi
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
+# we multi-own these directories, so as not to require the packages that
+# provide them, thereby dragging in excess dependencies.
+%dir %{_datadir}/icons/Bluecurve
+%dir %{_datadir}/icons/hicolor
+%dir /usr/lib/anaconda-runtime
+%dir /usr/lib/anaconda-runtime/boot
+%dir %{_datadir}/anaconda
+%dir %{_datadir}/anaconda/pixmaps/
+%dir %{_datadir}/kde-settings
+%dir %{_datadir}/kde-settings/kde-profile
+%dir %{_datadir}/kde-settings/kde-profile/default
+%dir %{_datadir}/kde-settings/kde-profile/default/share
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/16x16
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/16x16/places
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/24x24
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/24x24/places
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/32x32
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/32x32/places
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/36x36
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/36x36/places
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/places
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/96x96
+%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/96x96/places
+%dir %{_kde4_appsdir}
+%dir %{_kde4_appsdir}/ksplash
+%dir %{_kde4_appsdir}/ksplash/Themes
+
 %changelog
+* Thu Nov  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-1
+- fix broken xfce4 icon (bz 470353)
+- own directories for clean removal (bz 169282)
+
 * Sun Oct 26 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 10.0.0-2
 - Add (current version of) Fedora logo for SolarComet KSplash theme
 
