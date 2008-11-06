@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 10.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -183,6 +183,9 @@ fi
 %dir %{_kde4_appsdir}/ksplash/Themes
 
 %changelog
+* Thu Nov  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-2
+- pull .git files out of source tarball to keep SRPM size down
+
 * Thu Nov  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-1
 - fix broken xfce4 icon (bz 470353)
 - own directories for clean removal (bz 169282)
