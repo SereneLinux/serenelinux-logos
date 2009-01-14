@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 10.0.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -34,6 +34,20 @@ in the United States and other countries and are used by permission.
 
 See the included COPYING file for information on copying and
 redistribution.
+
+%package grub
+Summary: Fedora splash art for grub bootloader
+Group: System Environment/Base
+
+%description grub
+The fedora-logos-grub package contains image files which incorporate the
+Fedora trademark and the RPM logo (the "Marks"). The Marks are trademarks 
+or registered trademarks of Red Hat, Inc. in the United States and other 
+countries and are used by permission. 
+
+See the included COPYING file for information on copying and redistribution.
+
+Specifically, it contains splash art used with the grub bootloader.
 
 %prep
 %setup -q
@@ -133,7 +147,7 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
 fi
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-solar
@@ -148,9 +162,6 @@ fi
 /usr/lib/anaconda-runtime/boot/*png
 /usr/lib/anaconda-runtime/*.sh
 /usr/lib/anaconda-runtime/*.jpg
-# should be ifarch i386
-/boot/grub/splash.xpm.gz
-# end i386 bits
 
 # we multi-own these directories, so as not to require the packages that
 # provide them, thereby dragging in excess dependencies.
@@ -182,7 +193,16 @@ fi
 %dir %{_kde4_appsdir}/ksplash
 %dir %{_kde4_appsdir}/ksplash/Themes
 
+%files grub
+%defattr(-, root, root, -)
+# should be ifarch i386
+/boot/grub/splash.xpm.gz
+# end i386 bits
+
 %changelog
+* Wed Jan 14 2009 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-3
+- make grub subpackage (bz 479949)
+
 * Thu Nov  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-2
 - pull .git files out of source tarball to keep SRPM size down
 
