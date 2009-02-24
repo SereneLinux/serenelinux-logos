@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 10.0.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -183,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Feb 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 10.0.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Wed Jan 14 2009 Tom "spot" Callaway <tcallawa@redhat.com> 10.0.1-4
 - actually, no. I won't make a grub subpackage. No real benefit aside from saving 1MB on disk.
 
