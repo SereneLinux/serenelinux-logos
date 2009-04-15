@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 10.0.1
-Release: 5%{?dist}
+Version: 11.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -58,9 +58,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-solar
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-leonidas
 for i in firstboot/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-solar
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-leonidas
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -136,7 +136,7 @@ fi
 %defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
-%{_datadir}/firstboot/themes/fedora-solar
+%{_datadir}/firstboot/themes/fedora-leonidas/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
 %{_datadir}/pixmaps/*
@@ -183,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Apr 15 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 11.0.0-1
+- Update to 11.0.0 art (except for KDE splash)
+
 * Tue Feb 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 10.0.1-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
