@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.0
+Version: 11.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -183,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Apr 17 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 11.0.1-1
+- fix bootsplash to be less psychadelic
+
 * Wed Apr 15 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 11.0.0-1
 - Update to 11.0.0 art (except for KDE splash)
 
