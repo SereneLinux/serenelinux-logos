@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.1
-Release: 2%{?dist}
+Version: 11.0.2
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -39,9 +39,6 @@ redistribution.
 %setup -q
 
 %build
-# Accidentally doubly-gzipped
-gunzip bootloader/splash.xpm.gz
-mv bootloader/splash.xpm{,.gz}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -186,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Apr 20 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.2-1
+- fix missing progress files
+
 * Sun Apr 19 2009 Lubomir Rintel <lkundrak@v3.sk> - 11.0.1-2
 - fix bootsplash to be a bit more psychadelic
 
