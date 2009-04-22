@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.2
+Version: 11.0.3
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -109,8 +109,8 @@ for i in 16 24 32 36 48 96; do
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/${i}x${i}/places/start-here.png 
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024
-install -p -m 644 kde-splash/SolarComet-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
+mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
+install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,7 +138,7 @@ fi
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-leonidas/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
-%{_kde4_appsdir}/ksplash/Themes/SolarComet/1280x1024/logo.png
+%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
@@ -183,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Apr 22 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.3-1
+- update to 11.0.3, adds KDE splash
+
 * Mon Apr 20 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.2-1
 - fix missing progress files
 
