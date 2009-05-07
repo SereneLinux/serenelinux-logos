@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.4
+Version: 11.0.5
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -78,6 +78,11 @@ for i in pixmaps/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
+for i in plymouth/charge/* ; do
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
+done
+
 for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
@@ -137,6 +142,7 @@ fi
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-leonidas/
+%{_datadir}/plymouth/themes/charge/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 %{_datadir}/pixmaps/*
@@ -183,6 +189,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed May 06 2009 Ray Strode <rstrode@redhat.com> 11.0.5-1
+- Add plymouth "Charge" theme artwork
+
 * Wed Apr 22 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.4-1
 - update to 11.0.4, fix art to actually be in leonidas theme
 
