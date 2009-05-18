@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.5
+Version: 11.0.6
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -189,6 +189,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon May 18 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.6-1
+- drop "lowres" image, saves a small amount of diskspace
+
 * Wed May 06 2009 Ray Strode <rstrode@redhat.com> 11.0.5-1
 - Add plymouth "Charge" theme artwork
 
