@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 11.0.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -189,6 +189,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 11.0.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Mon May 18 2009 Tom "spot" Callaway <tcallawa@redhat.com> 11.0.6-1
 - drop "lowres" image, saves a small amount of diskspace
 
