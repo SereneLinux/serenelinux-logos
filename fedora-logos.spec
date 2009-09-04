@@ -1,18 +1,11 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.6
-Release: 2%{?dist}
+Version: 11.0.7
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
-
-# The trademarks contained in this file are the property of Red Hat, Inc.  No
-# license to these trademarks is provided or is necessary if you merely
-# replicate the Fedora code as you downloaded it from the Fedora Project
-# website.  However, there are permissions granted for the use of these marks
-# under certain other conditions.  You may find those permissions at
-# http://fedoraproject.org/wiki/Legal/TrademarkGuidelines and COPYING file.
-License:  Not licensed.  See COPYING file for trademark permission.
+License: Licensed only for approved usage, see COPYING for details. 
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
@@ -28,12 +21,17 @@ BuildRequires: kde-filesystem
 
 %description
 The fedora-logos package contains image files which incorporate the 
-Fedora trademark and the RPM logo (the "Marks").
-The Marks are trademarks or registered trademarks of Red Hat, Inc.
-in the United States and other countries and are used by permission.
+Fedora trademarks (the "Marks"). The Marks are trademarks or registered 
+trademarks of Red Hat, Inc. in the United States and other countries and 
+are used by permission.
 
-See the included COPYING file for information on copying and
-redistribution.
+This package and its content may not be distributed with anything but
+unmodified packages from Fedora Project. It can be used in a Fedora Spin, 
+but not in a Fedora Remix. If necessary, this package can be replaced by 
+the more liberally licensed generic-logos package.
+
+See the included COPYING file for full information on copying and 
+redistribution of this package and its contents.
 
 %prep
 %setup -q
@@ -42,16 +40,6 @@ redistribution.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat
-for i in redhat-pixmaps/*; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat
-done
-(cd $RPM_BUILD_ROOT%{_datadir}/pixmaps/redhat; \
-for i in *-mini.xpm; do \
-  linkfile=`echo $i | sed -e "s/\(.*\)-mini/mini-\1/"` ; \
-  ln -s $i $linkfile ; \
-done)
 
 # should be ifarch i386
 mkdir -p $RPM_BUILD_ROOT/boot/grub
@@ -189,6 +177,9 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Sep  4 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 11.0.7-1
+- Update to 11.0.7, fix license tag, description
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 11.0.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
