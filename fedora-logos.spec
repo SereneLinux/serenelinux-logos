@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 11.0.7
+Version: 12.0.0
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -46,9 +46,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-leonidas
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-constantine
 for i in firstboot/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-leonidas
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-constantine
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -129,7 +129,7 @@ fi
 %defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
-%{_datadir}/firstboot/themes/fedora-leonidas/
+%{_datadir}/firstboot/themes/fedora-constantine/
 %{_datadir}/plymouth/themes/charge/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
@@ -177,6 +177,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Oct  1 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.0-1
+- Update to 12.0.0, F12 art (except KDE)
+
 * Fri Sep  4 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 11.0.7-1
 - Update to 11.0.7, fix license tag, description
 
