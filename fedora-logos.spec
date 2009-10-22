@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 12.0.0
+Version: 12.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -177,6 +177,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 21 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.1-1
+- Update to 12.0.1, switch to generic version of firstboot-left.png
+
 * Thu Oct  1 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.0-1
 - Update to 12.0.0, F12 art (except KDE)
 
