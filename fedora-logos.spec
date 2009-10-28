@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 12.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -87,6 +87,8 @@ done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
 install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
+install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
@@ -181,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 28 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.2-2
+- Fixed 12.0.2 source, package up scalable svg source for system-software-install icon
+
 * Wed Oct 28 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.2-1
 - Update to 12.0.2, has improved system-software-install icon
 
