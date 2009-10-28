@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 12.0.1
+Version: 12.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -85,6 +85,9 @@ for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
   done
 done
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
+install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
+
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
 ln -s %{_datadir}/icons/hicolor/16x16/apps/fedora-logo-icon.png favicon.png
@@ -137,6 +140,7 @@ fi
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
+%{_datadir}/icons/Fedora/*/apps/
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
 /usr/lib/anaconda-runtime/boot/*png
@@ -177,6 +181,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 28 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.2-1
+- Update to 12.0.2, has improved system-software-install icon
+
 * Wed Oct 21 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.1-1
 - Update to 12.0.1, switch to generic version of firstboot-left.png
 
