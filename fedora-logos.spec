@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 12.0.2
-Release: 2%{?dist}
+Version: 12.0.3
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -183,6 +183,9 @@ fi
 # end i386 bits
 
 %changelog
+* Thu Oct 29 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.3-1
+- Update to 12.0.3, yet another name for system-software-install icons
+
 * Wed Oct 28 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.2-2
 - Fixed 12.0.2 source, package up scalable svg source for system-software-install icon
 
