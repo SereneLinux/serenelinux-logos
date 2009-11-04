@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 12.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -87,6 +87,8 @@ done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
 install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/apps/
+install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
 install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
 
@@ -137,7 +139,9 @@ fi
 %{_datadir}/firstboot/themes/fedora-constantine/
 %{_datadir}/plymouth/themes/charge/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
+%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/apps/*
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
+
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/icons/hicolor/*/apps/*
@@ -183,6 +187,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Nov  4 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.3-2
+- kde icon installation
+
 * Thu Oct 29 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.3-1
 - Update to 12.0.3, yet another name for system-software-install icons
 
