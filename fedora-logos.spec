@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 13.0.0
+Version: 13.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -187,6 +187,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon May  3 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.1-1
+- fix makefile to not overwrite progress_first.png
+
 * Mon May  3 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.0-1
 - f13 art, improved fedora icon
 
