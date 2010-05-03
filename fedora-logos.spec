@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 12.0.3
-Release: 2%{?dist}
+Version: 13.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -46,9 +46,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-constantine
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-goddard/
 for i in firstboot/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-constantine
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-goddard/
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -71,7 +71,7 @@ for i in plymouth/charge/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
 done
 
-for size in 16x16 24x24 32x32 36x36 48x48 96x96 ; do
+for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
   for i in icons/hicolor/$size/apps/* ; do
@@ -102,7 +102,7 @@ install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
-for i in 16 24 32 36 48 96; do
+for i in 16 22 24 32 36 48 96 256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
   # why not use (sym)links like Bluecurve above?  -- Rex
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
@@ -136,7 +136,7 @@ fi
 %defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
-%{_datadir}/firstboot/themes/fedora-constantine/
+%{_datadir}/firstboot/themes/fedora-goddard/
 %{_datadir}/plymouth/themes/charge/
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
 %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/apps/*
@@ -187,6 +187,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon May  3 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.0-1
+- f13 art, improved fedora icon
+
 * Wed Nov  4 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 12.0.3-2
 - kde icon installation
 
