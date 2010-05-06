@@ -1,6 +1,6 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 13.0.1
+Version: 13.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -85,6 +85,8 @@ for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   done
 done
 
+
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
 install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/apps/
@@ -99,6 +101,7 @@ popd
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
+install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/start-here.svg
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 
@@ -108,6 +111,11 @@ for i in 16 22 24 32 36 48 96 256 ; do
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/${i}x${i}/places/start-here.png 
 done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
+pushd $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
+ln -s ../../../hicolor/scalable/apps/start-here.svg .
+popd
 
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
 install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
@@ -187,6 +195,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed May  5 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.2-1
+- add scalable start-here svg
+
 * Mon May  3 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.1-1
 - fix makefile to not overwrite progress_first.png
 
