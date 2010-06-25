@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 13.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -16,7 +16,7 @@ Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
-# For _kde4_appsdir macro:
+# For _kde4_* macros:
 BuildRequires: kde-filesystem
 
 %description
@@ -85,14 +85,15 @@ for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   done
 done
 
-
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
 install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/apps/
-install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
-install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
+install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps/
+
+mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/48x48/apps/
+install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/48x48/apps/
+mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/scalable/apps/
+install -p -m 644 icons/Fedora/scalable/apps/*  $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/scalable/apps/
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
@@ -109,7 +110,7 @@ for i in 16 22 24 32 36 48 96 256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
   # why not use (sym)links like Bluecurve above?  -- Rex
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
-  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/${i}x${i}/places/start-here.png 
+  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/${i}x${i}/places/start-here.png 
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
@@ -127,7 +128,14 @@ rm -rf $RPM_BUILD_ROOT
 touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
 touch --no-create %{_datadir}/icons/Fedora || :
-touch --no-create %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE ||:
+touch --no-create %{_kde4_iconsdir}/Fedora-KDE ||:
+
+%postun
+if [ $1 -eq 0 ] ; then
+touch --no-create %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/Bluecurve || :
+touch --no-create %{_datadir}/icons/Fedora || :
+touch --no-create %{_kde4_iconsdir}/Fedora-KDE ||:
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/hicolor/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
@@ -138,6 +146,25 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/Fedora/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
   fi
+  if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE/index.theme || :
+  fi
+fi
+
+%posttrans
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+  if [ -f %{_datadir}/icons/hicolor/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+  fi
+  if [ -f %{_datadir}/icons/Bluecurve/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/Bluecurve || :
+  fi
+  if [ -f %{_datadir}/icons/Fedora/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
+  fi
+  if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE/index.theme || :
+  fi
 fi
 
 %files
@@ -146,8 +173,7 @@ fi
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-goddard/
 %{_datadir}/plymouth/themes/charge/
-%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/places/*
-%{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/*/apps/*
+%{_kde4_iconsdir}/Fedora-KDE/
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
 %{_datadir}/pixmaps/*
@@ -169,24 +195,6 @@ fi
 %dir /usr/lib/anaconda-runtime/boot
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/pixmaps/
-%dir %{_datadir}/kde-settings
-%dir %{_datadir}/kde-settings/kde-profile
-%dir %{_datadir}/kde-settings/kde-profile/default
-%dir %{_datadir}/kde-settings/kde-profile/default/share
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/16x16
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/16x16/places
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/24x24
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/24x24/places
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/32x32
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/32x32/places
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/36x36
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/36x36/places
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/48x48/places
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/96x96
-%dir %{_datadir}/kde-settings/kde-profile/default/share/icons/Fedora-KDE/96x96/places
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
 %dir %{_kde4_appsdir}/ksplash/Themes
@@ -195,6 +203,12 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Jun 25 2010 Rex Dieter <rdieter@fedoraproject.org> - 13.0.2-2
+- Fedora-KDE icons are now fedora-kde-icons-theme, not kde-settings
+- simplify Fedora-KDE multidir ownership
+- optimize icon scriplets
+- drop ancient Conflicts: kdebase ...
+
 * Wed May  5 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 13.0.2-1
 - add scalable start-here svg
 
