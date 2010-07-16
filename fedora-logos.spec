@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 13.0.2
-Release: 2%{?dist}
+Version: 13.0.3
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -178,21 +178,19 @@ fi
 
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
+%{_datadir}/anaconda/splashtolss.sh
+%{_datadir}/anaconda/syslinux-splash.png
+%{_datadir}/anaconda/syslinux-vesa-splash.jpg
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/apps/
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
-/usr/lib/anaconda-runtime/boot/*png
-/usr/lib/anaconda-runtime/*.sh
-/usr/lib/anaconda-runtime/*.jpg
 
 # we multi-own these directories, so as not to require the packages that
 # provide them, thereby dragging in excess dependencies.
 %dir %{_datadir}/icons/Bluecurve
 %dir %{_datadir}/icons/hicolor
-%dir /usr/lib/anaconda-runtime
-%dir /usr/lib/anaconda-runtime/boot
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/pixmaps/
 %dir %{_kde4_appsdir}
@@ -203,6 +201,10 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Jul 16 2010 Tom "spot" Callaway <tcallawa@redhat.com> 13.0.3-1
+- Anaconda changed where it puts and looks for items, so we need to place
+  our files in the correct spot.
+
 * Fri Jun 25 2010 Rex Dieter <rdieter@fedoraproject.org> - 13.0.2-2
 - Fedora-KDE icons are now fedora-kde-icons-theme, not kde-settings
 - simplify Fedora-KDE multidir ownership
