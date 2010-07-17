@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 13.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -150,6 +150,7 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
     gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE/index.theme || :
   fi
 fi
+fi
 
 %posttrans
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
@@ -201,6 +202,9 @@ fi
 # end i386 bits
 
 %changelog
+* Sat Jul 17 2010 Rex Dieter <rdieter@fedoraproject.org> - 13.0.3-2
+- fix %%postun scriptlet error 
+
 * Fri Jul 16 2010 Tom "spot" Callaway <tcallawa@redhat.com> 13.0.3-1
 - Anaconda changed where it puts and looks for items, so we need to place
   our files in the correct spot.
