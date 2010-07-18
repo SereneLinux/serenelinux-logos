@@ -1,7 +1,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 13.0.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -147,7 +147,7 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
   fi
   if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
-    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE/index.theme || :
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE || :
   fi
 fi
 fi
@@ -164,7 +164,7 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
   fi
   if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
-    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE/index.theme || :
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE || :
   fi
 fi
 
@@ -202,6 +202,9 @@ fi
 # end i386 bits
 
 %changelog
+* Sun Jul 18 2010 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp> - 13.0.3-3
+- And fix another %%postun scriptlet error
+
 * Sat Jul 17 2010 Rex Dieter <rdieter@fedoraproject.org> - 13.0.3-2
 - fix %%postun scriptlet error 
 
