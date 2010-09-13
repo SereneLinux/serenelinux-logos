@@ -1,7 +1,9 @@
+%global codename laughlin
+
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 13.0.3
-Release: 3%{?dist}
+Version: 14.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -46,9 +48,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 # end i386 bits
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-goddard/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
 for i in firstboot/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-goddard/
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
@@ -172,7 +174,7 @@ fi
 %defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
-%{_datadir}/firstboot/themes/fedora-goddard/
+%{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
 %{_kde4_iconsdir}/Fedora-KDE/
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
@@ -180,8 +182,8 @@ fi
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/anaconda/splashtolss.sh
-%{_datadir}/anaconda/syslinux-splash.png
-%{_datadir}/anaconda/syslinux-vesa-splash.jpg
+%{_datadir}/anaconda/boot/syslinux-splash.png
+%{_datadir}/anaconda/boot/syslinux-vesa-splash.jpg
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/apps/
@@ -193,6 +195,7 @@ fi
 %dir %{_datadir}/icons/Bluecurve
 %dir %{_datadir}/icons/hicolor
 %dir %{_datadir}/anaconda
+%dir %{_datadir}/anaconda/boot/
 %dir %{_datadir}/anaconda/pixmaps/
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
@@ -202,6 +205,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Sep 13 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.0-1
+- update to 14.0.0
+
 * Sun Jul 18 2010 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp> - 13.0.3-3
 - And fix another %%postun scriptlet error
 
