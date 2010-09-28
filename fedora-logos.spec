@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 14.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -18,6 +18,7 @@ Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
 Requires(post): coreutils
+BuildRequires: hardlink
 # For _kde4_* macros:
 BuildRequires: kde-filesystem
 
@@ -92,10 +93,10 @@ install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fed
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
 install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps/
 
-mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/48x48/apps/
-install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/48x48/apps/
-mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/scalable/apps/
-install -p -m 644 icons/Fedora/scalable/apps/*  $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/scalable/apps/
+mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
+install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
+mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
+install -p -m 644 icons/Fedora/scalable/apps/*  $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
@@ -110,9 +111,8 @@ install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_RO
 
 for i in 16 22 24 32 36 48 96 256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
-  # why not use (sym)links like Bluecurve above?  -- Rex
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
-  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/Fedora-KDE/${i}x${i}/places/start-here.png 
+  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/${i}x${i}/places/start-here-kde-fedora.png 
 done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
@@ -123,6 +123,10 @@ popd
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
 install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
+# save some dup'd icons
+/usr/sbin/hardlink -v %{buildroot}/
+
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -130,14 +134,14 @@ rm -rf $RPM_BUILD_ROOT
 touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
 touch --no-create %{_datadir}/icons/Fedora || :
-touch --no-create %{_kde4_iconsdir}/Fedora-KDE ||:
+touch --no-create %{_kde4_iconsdir}/oxygen ||:
 
 %postun
 if [ $1 -eq 0 ] ; then
 touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
 touch --no-create %{_datadir}/icons/Fedora || :
-touch --no-create %{_kde4_iconsdir}/Fedora-KDE ||:
+touch --no-create %{_kde4_iconsdir}/oxygen ||:
 if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/hicolor/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
@@ -148,8 +152,8 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/Fedora/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
   fi
-  if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
-    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE || :
+  if [ -f %{_kde4_iconsdir}/oxygen/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/oxygen || :
   fi
 fi
 fi
@@ -165,8 +169,8 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
   if [ -f %{_datadir}/icons/Fedora/index.theme ]; then
     gtk-update-icon-cache --quiet %{_datadir}/icons/Fedora || :
   fi
-  if [ -f %{_kde4_iconsdir}/Fedora-KDE/index.theme ]; then
-    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/Fedora-KDE || :
+  if [ -f %{_kde4_iconsdir}/oxygen/index.theme ]; then
+    gtk-update-icon-cache --quiet %{_kde4_iconsdir}/oxygen || :
   fi
 fi
 
@@ -176,7 +180,7 @@ fi
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
-%{_kde4_iconsdir}/Fedora-KDE/
+%{_kde4_iconsdir}/oxygen/
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
 %{_datadir}/pixmaps/*
@@ -205,6 +209,10 @@ fi
 # end i386 bits
 
 %changelog
+* Tue Sep 28 2010 Rex Dieter <rdieter@fedoraproject.org> - 14.0.0-2 
+- s/Fedora-KDE/oxygen/ icons (#615621)
+- use hardlink to save a little space
+
 * Mon Sep 13 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.0-1
 - update to 14.0.0
 
