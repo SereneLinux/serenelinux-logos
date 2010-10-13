@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 14.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -17,6 +17,8 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
+# For /usr/share/anaconda/splashtolss.sh
+Requires: syslinux-perl, netpbm-progs
 Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
@@ -209,6 +211,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Oct 13 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.0-3
+- add missing Requires for splashtolss.sh (bz 635289)
+
 * Tue Sep 28 2010 Rex Dieter <rdieter@fedoraproject.org> - 14.0.0-2 
 - s/Fedora-KDE/oxygen/ icons (#615621)
 - use hardlink to save a little space
