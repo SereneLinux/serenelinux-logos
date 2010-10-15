@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 14.0.0
-Release: 3%{?dist}
+Version: 14.0.1
+Release: 500%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -17,8 +17,8 @@ Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
-# For /usr/share/anaconda/splashtolss.sh
-Requires: syslinux-perl, netpbm-progs
+# For splashtolss.sh
+BuildRequires: syslinux-perl, netpbm-progs
 Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
@@ -187,7 +187,7 @@ fi
 
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
-%{_datadir}/anaconda/splashtolss.sh
+%{_datadir}/anaconda/boot/splash.lss
 %{_datadir}/anaconda/boot/syslinux-splash.png
 %{_datadir}/anaconda/boot/syslinux-vesa-splash.jpg
 %{_datadir}/icons/hicolor/*/apps/*
@@ -211,6 +211,13 @@ fi
 # end i386 bits
 
 %changelog
+* Fri Oct 15 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.1-500
+- convert missing Requires to BuildRequires
+- no longer package splashtolss.sh
+- package splash.lss
+- update to 14.0.1-500, so we are equal to (or greater than) generic-logos.
+  Hey notting, stop bumping past me in version, its not a race! ;)
+
 * Wed Oct 13 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.0-3
 - add missing Requires for splashtolss.sh (bz 635289)
 
