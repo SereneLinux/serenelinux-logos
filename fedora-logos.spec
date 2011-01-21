@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 14.0.1
-Release: 500%{?dist}
+Version: 14.0.2
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -23,6 +23,9 @@ Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
 BuildRequires: kde-filesystem
+# For generating the EFI icon
+BuildRequires: ImageMagick
+BuildRequires: libicns-utils
 
 %description
 The fedora-logos package contains image files which incorporate the 
@@ -42,6 +45,7 @@ redistribution of this package and its contents.
 %setup -q
 
 %build
+make bootloader/fedora.icns
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -55,6 +59,9 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
 for i in firstboot/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
 done
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
+install -p -m 644 bootloader/fedora.icns $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 for i in gnome-splash/* ; do
@@ -211,6 +218,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Jan 05 2011 Matthew Garrett <mjg@redhat.com> - 14.0.2-1
+- Add logo for EFI Macs
+
 * Fri Oct 15 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 14.0.1-500
 - convert missing Requires to BuildRequires
 - no longer package splashtolss.sh
