@@ -1,9 +1,9 @@
-%global codename laughlin
+%global codename lovelock
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 14.0.2
-Release: 2%{?dist}
+Version: 15.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -218,6 +218,9 @@ fi
 # end i386 bits
 
 %changelog
+* Mon Mar 21 2011 Tom Callaway <spot@fedoraproject.org>
+- update with F-15 beta images, codename
+
 * Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 14.0.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
