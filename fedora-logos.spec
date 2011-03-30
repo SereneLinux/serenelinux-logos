@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 15.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -12,7 +12,9 @@ License: Licensed only for approved usage, see COPYING for details.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Obsoletes: redhat-logos
+Obsoletes: gnome-logos
 Provides: redhat-logos = %{version}-%{release}
+Provides: gnome-logos = %{version}-%{release}
 Provides: system-logos = %{version}-%{release}
 Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
@@ -218,6 +220,9 @@ fi
 # end i386 bits
 
 %changelog
+* Wed Mar 30 2011 Tom Callaway <spot@fedoraproject.org>
+- Provides/Obsoletes gnome-logos (bz 692231)
+
 * Mon Mar 21 2011 Tom Callaway <spot@fedoraproject.org>
 - update with F-15 beta images, codename
 
