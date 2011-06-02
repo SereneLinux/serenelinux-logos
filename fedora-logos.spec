@@ -3,13 +3,12 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 15.0.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Obsoletes: redhat-logos
 Obsoletes: gnome-logos
@@ -137,10 +136,6 @@ install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}
 # save some dup'd icons
 /usr/sbin/hardlink -v %{buildroot}/
 
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 touch --no-create %{_datadir}/icons/Bluecurve || :
@@ -166,7 +161,6 @@ gtk-update-icon-cache %{_datadir}/icons/Fedora &>/dev/null || :
 gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 
 %files
-%defattr(-, root, root, -)
 %doc COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-%{codename}/
@@ -187,19 +181,63 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 
 # we multi-own these directories, so as not to require the packages that
 # provide them, thereby dragging in excess dependencies.
-%dir %{_datadir}/icons/Bluecurve
-%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/Bluecurve/
+%dir %{_datadir}/icons/Bluecurve/16x16/
+%dir %{_datadir}/icons/Bluecurve/16x16/apps/
+%dir %{_datadir}/icons/Bluecurve/22x22/
+%dir %{_datadir}/icons/Bluecurve/22x22/apps/
+%dir %{_datadir}/icons/Bluecurve/24x24/
+%dir %{_datadir}/icons/Bluecurve/24x24/apps/
+%dir %{_datadir}/icons/Bluecurve/32x32/
+%dir %{_datadir}/icons/Bluecurve/32x32/apps/
+%dir %{_datadir}/icons/Bluecurve/36x36/
+%dir %{_datadir}/icons/Bluecurve/36x36/apps/
+%dir %{_datadir}/icons/Bluecurve/48x48/
+%dir %{_datadir}/icons/Bluecurve/48x48/apps/
+%dir %{_datadir}/icons/Bluecurve/96x96/
+%dir %{_datadir}/icons/Bluecurve/96x96/apps/
+%dir %{_datadir}/icons/Bluecurve/256x256/
+%dir %{_datadir}/icons/Bluecurve/256x256/apps/
+%dir %{_datadir}/icons/Fedora/
+%dir %{_datadir}/icons/Fedora/16x16/
+%dir %{_datadir}/icons/Fedora/16x16/places/
+%dir %{_datadir}/icons/Fedora/22x22/
+%dir %{_datadir}/icons/Fedora/22x22/places/
+%dir %{_datadir}/icons/Fedora/24x24/
+%dir %{_datadir}/icons/Fedora/24x24/places/
+%dir %{_datadir}/icons/Fedora/32x32/
+%dir %{_datadir}/icons/Fedora/32x32/places/
+%dir %{_datadir}/icons/Fedora/36x36/
+%dir %{_datadir}/icons/Fedora/36x36/places/
+%dir %{_datadir}/icons/Fedora/48x48/
+%dir %{_datadir}/icons/Fedora/48x48/places/
+%dir %{_datadir}/icons/Fedora/96x96/
+%dir %{_datadir}/icons/Fedora/96x96/places/
+%dir %{_datadir}/icons/Fedora/256x256/
+%dir %{_datadir}/icons/Fedora/256x256/places/
+%dir %{_datadir}/icons/Fedora/scalable/
+%dir %{_datadir}/icons/Fedora/scalable/places/
+%dir %{_datadir}/icons/hicolor/
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/boot/
 %dir %{_datadir}/anaconda/pixmaps/
+%dir %{_datadir}/firstboot/
+%dir %{_datadir}/firstboot/themes/
+%dir %{_datadir}/gnome-screensaver/
+%dir %{_kde4_sharedir}/kde4/
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
-%dir %{_kde4_appsdir}/ksplash/Themes
+%dir %{_kde4_appsdir}/ksplash/Themes/
+%dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/
+%dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 # end i386 bits
 
 %changelog
+* Thu Jun 02 2011 Tom Callaway <spot@fedoraproject.org> - 15.0.0-4
+- fix unowned directories (bz 709510)
+
 * Sat May 07 2011 Christopher Aillon <caillon@redhat.com> - 15.0.0-3
 - Update icon cache scriptlet
 
