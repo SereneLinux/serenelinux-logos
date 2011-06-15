@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 15.0.0
-Release: 4%{?dist}
+Version: 15.0.1
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -133,6 +133,9 @@ popd
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
 install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a fedora/*.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
+
 # save some dup'd icons
 /usr/sbin/hardlink -v %{buildroot}/
 
@@ -178,6 +181,7 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/icons/Fedora/*/apps/
 %{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/gnome-screensaver/*
+%{_datadir}/%{name}/
 
 # we multi-own these directories, so as not to require the packages that
 # provide them, thereby dragging in excess dependencies.
@@ -218,12 +222,32 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/icons/Fedora/scalable/
 %dir %{_datadir}/icons/Fedora/scalable/places/
 %dir %{_datadir}/icons/hicolor/
+%dir %{_datadir}/icons/hicolor/16x16/
+%dir %{_datadir}/icons/hicolor/16x16/apps/
+%dir %{_datadir}/icons/hicolor/22x22/
+%dir %{_datadir}/icons/hicolor/22x22/apps/
+%dir %{_datadir}/icons/hicolor/24x24/
+%dir %{_datadir}/icons/hicolor/24x24/apps/
+%dir %{_datadir}/icons/hicolor/32x32/
+%dir %{_datadir}/icons/hicolor/32x32/apps/
+%dir %{_datadir}/icons/hicolor/36x36/
+%dir %{_datadir}/icons/hicolor/36x36/apps/
+%dir %{_datadir}/icons/hicolor/48x48/
+%dir %{_datadir}/icons/hicolor/48x48/apps/
+%dir %{_datadir}/icons/hicolor/96x96/
+%dir %{_datadir}/icons/hicolor/96x96/apps/
+%dir %{_datadir}/icons/hicolor/256x256/
+%dir %{_datadir}/icons/hicolor/256x256/apps/
+%dir %{_datadir}/icons/hicolor/scalable/
+%dir %{_datadir}/icons/hicolor/scalable/apps/
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/boot/
 %dir %{_datadir}/anaconda/pixmaps/
 %dir %{_datadir}/firstboot/
 %dir %{_datadir}/firstboot/themes/
 %dir %{_datadir}/gnome-screensaver/
+%dir %{_datadir}/plymouth/
+%dir %{_datadir}/plymouth/themes/
 %dir %{_kde4_sharedir}/kde4/
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
@@ -235,6 +259,11 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Wed Jun 15 2011 Tom Callaway <spot@fedoraproject.org> - 15.0.1-1
+- 15.0.1
+- add svg logos
+- get the last few unowned directories
+
 * Thu Jun 02 2011 Tom Callaway <spot@fedoraproject.org> - 15.0.0-4
 - fix unowned directories (bz 709510)
 
