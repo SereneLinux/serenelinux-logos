@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 15.0.1
+Version: 16.0.0
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -259,6 +259,11 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Fri Aug  5 2011 Tom Callaway <spot@fedoraproject.org> - 16.0.0-1
+- 16.0.0
+- updated progress_first.png
+- added script and svg to generate new progress_first.png
+
 * Wed Jun 15 2011 Tom Callaway <spot@fedoraproject.org> - 15.0.1-1
 - 15.0.1
 - add svg logos
