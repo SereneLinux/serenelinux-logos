@@ -1,8 +1,8 @@
-%global codename lovelock
+%global codename verne
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 16.0.0
+Version: 16.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -259,6 +259,10 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Wed Sep  7 2011 Tom Callaway <spot@fedoraproject.org> - 16.0.1-1
+- 16.0.1
+- updated beta art and codename
+
 * Fri Aug  5 2011 Tom Callaway <spot@fedoraproject.org> - 16.0.0-1
 - 16.0.0
 - updated progress_first.png
