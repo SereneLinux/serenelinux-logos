@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 16.0.1
+Version: 16.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -49,8 +49,6 @@ redistribution of this package and its contents.
 make bootloader/fedora.icns
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 # should be ifarch i386
 mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
@@ -175,7 +173,7 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/anaconda/boot/splash.lss
 %{_datadir}/anaconda/boot/syslinux-splash.png
-%{_datadir}/anaconda/boot/syslinux-vesa-splash.jpg
+%{_datadir}/anaconda/boot/splash.png
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/apps/
@@ -259,6 +257,10 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Tue Sep 13 2011 Tom Callaway <spot@fedoraproject.org> - 16.0.2-1
+- 16.0.2
+- moved syslinux-vesa-splash.jpg to boot/splash.png
+
 * Wed Sep  7 2011 Tom Callaway <spot@fedoraproject.org> - 16.0.1-1
 - 16.0.1
 - updated beta art and codename
