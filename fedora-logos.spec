@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 16.0.2
-Release: 2%{?dist}
+Version: 17.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -257,6 +257,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Tue Feb 14 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.0-1
+- anaconda splash art specifying a version updated to 17
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 16.0.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
