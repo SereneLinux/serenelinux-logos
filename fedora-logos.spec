@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 17.0.0
+Version: 17.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -52,6 +52,9 @@ make bootloader/fedora.icns
 # should be ifarch i386
 mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
+mkdir -p $RPM_BUILD_ROOT/boot/grub2/themes/system/
+install -p -m 644 bootloader/background.png $RPM_BUILD_ROOT/boot/grub2/themes/system/background.png
+
 # end i386 bits
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
@@ -61,6 +64,9 @@ done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
 install -p -m 644 bootloader/fedora.icns $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
+# To regenerate these files, run:
+# pngtopnm foo.png | ppmtoapplevol > foo.vol
+install -p -m 644 bootloader/fedora.vol bootloader/fedora-media.vol $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
 for i in gnome-splash/* ; do
@@ -254,9 +260,17 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
+/boot/grub2/themes/system/background.png
 # end i386 bits
 
 %changelog
+* Wed May  9 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-1
+- add grub2 background.png
+
+* Tue May  1 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.1-1
+- add apple efi label images
+- fix copyright date on splash (bz815012)
+
 * Tue Feb 14 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.0-1
 - anaconda splash art specifying a version updated to 17
 
