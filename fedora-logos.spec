@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -134,9 +134,6 @@ pushd $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
 ln -s ../../../hicolor/scalable/apps/start-here.svg .
 popd
 
-mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
-install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a fedora/*.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
 
@@ -173,7 +170,6 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
 %{_kde4_iconsdir}/oxygen/
-%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
 %{_datadir}/pixmaps/*
 %{_datadir}/anaconda/pixmaps/*
@@ -264,6 +260,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Tue Jun 12 2012 Rex Dieter <rdieter@fedoraproject.org> 17.0.2-2
+- drop reference to (old/f11) Leonidas ksplash theme
+
 * Wed May  9 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-1
 - add grub2 background.png
 
