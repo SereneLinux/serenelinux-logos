@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -260,6 +260,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 17.0.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Tue Jun 12 2012 Rex Dieter <rdieter@fedoraproject.org> 17.0.2-2
 - drop reference to (old/f11) Leonidas ksplash theme
 
