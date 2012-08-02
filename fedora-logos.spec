@@ -1,9 +1,9 @@
-%global codename verne
+%global codename sphericalcow
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -248,18 +248,22 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/gnome-screensaver/
 %dir %{_datadir}/plymouth/
 %dir %{_datadir}/plymouth/themes/
-%dir %{_kde4_sharedir}/kde4/
-%dir %{_kde4_appsdir}
-%dir %{_kde4_appsdir}/ksplash
-%dir %{_kde4_appsdir}/ksplash/Themes/
-%dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/
-%dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
+# %dir %{_kde4_sharedir}/kde4/
+# %dir %{_kde4_appsdir}
+# %dir %{_kde4_appsdir}/ksplash
+# %dir %{_kde4_appsdir}/ksplash/Themes/
+# %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/
+# %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 /boot/grub2/themes/system/background.png
 # end i386 bits
 
 %changelog
+* Thu Aug  2 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-4
+- codename update for f18
+- drop unused kde dir ownerships
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 17.0.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
