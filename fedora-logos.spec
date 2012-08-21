@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -54,6 +54,9 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 mkdir -p $RPM_BUILD_ROOT/boot/grub2/themes/system/
 install -p -m 644 bootloader/background.png $RPM_BUILD_ROOT/boot/grub2/themes/system/background.png
+pushd $RPM_BUILD_ROOT/boot/grub2/themes/system/
+ln -s background.png fireworks.png
+popd
 
 # end i386 bits
 
@@ -257,9 +260,13 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # should be ifarch i386
 /boot/grub/splash.xpm.gz
 /boot/grub2/themes/system/background.png
+/boot/grub2/themes/system/fireworks.png
 # end i386 bits
 
 %changelog
+* Tue Aug 21 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-5
+- add fireworks.png symlink
+
 * Thu Aug  2 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-4
 - codename update for f18
 - drop unused kde dir ownerships
