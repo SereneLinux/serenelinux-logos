@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.2
-Release: 5%{?dist}
+Release: 6%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -50,8 +50,8 @@ make bootloader/fedora.icns
 
 %install
 # should be ifarch i386
-mkdir -p $RPM_BUILD_ROOT/boot/grub
-install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
+# mkdir -p $RPM_BUILD_ROOT/boot/grub
+# install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 mkdir -p $RPM_BUILD_ROOT/boot/grub2/themes/system/
 install -p -m 644 bootloader/background.png $RPM_BUILD_ROOT/boot/grub2/themes/system/background.png
 pushd $RPM_BUILD_ROOT/boot/grub2/themes/system/
@@ -258,12 +258,15 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/
 # %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
 # should be ifarch i386
-/boot/grub/splash.xpm.gz
+# /boot/grub/splash.xpm.gz
 /boot/grub2/themes/system/background.png
 /boot/grub2/themes/system/fireworks.png
 # end i386 bits
 
 %changelog
+* Tue Sep  4 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-6
+- drop grub1 art (nothing uses it anymore)
+
 * Tue Aug 21 2012 Tom Callaway <spot@fedoraproject.org> - 17.0.2-5
 - add fireworks.png symlink
 
