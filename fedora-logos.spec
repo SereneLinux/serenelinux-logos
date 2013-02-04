@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 17.0.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -263,7 +263,6 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/gnome-screensaver/
 %dir %{_datadir}/plymouth/
 %dir %{_datadir}/plymouth/themes/
-%dir %{_kde4_sharedir}/kde4/
 # DO NOT REMOVE THESE DIRS!!! We still support the Leonidas and Solar themes!
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
@@ -279,6 +278,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Sun Feb 03 2013 Kevin Kofler <Kevin@tigcc.ticalc.org> - 17.0.3-3
+- drop unused directory ownership I accidentally reenabled in -2
+
 * Sun Feb 03 2013 Kevin Kofler <Kevin@tigcc.ticalc.org> - 17.0.3-2
 - restore Leonidas KSplash icon, fixes Leonidas and Solar KSplash themes
 
