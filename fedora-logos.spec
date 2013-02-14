@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 17.0.3
-Release: 3%{?dist}
+Version: 19.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -90,6 +90,12 @@ for i in pixmaps/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
 done
 
+# when we get translated rnotes, I'll need to rework this, but this will do for now
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/rnotes/en
+for i in rnotes/* ; do
+  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/rnotes/en
+done
+
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
 for i in plymouth/charge/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
@@ -151,7 +157,8 @@ cp -a fedora/*.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a css3 $RPM_BUILD_ROOT%{_datadir}/%{name}/
 
 # save some dup'd icons
-/usr/sbin/hardlink -v %{buildroot}/
+# Except in /boot. Because some people think it is fun to use VFAT for /boot.
+/usr/sbin/hardlink -v %{buildroot}/usr
 
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
@@ -278,6 +285,10 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Thu Feb 14 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.0-1
+- add rnotes
+- do not hardlink anything in /boot
+
 * Sun Feb 03 2013 Kevin Kofler <Kevin@tigcc.ticalc.org> - 17.0.3-3
 - drop unused directory ownership I accidentally reenabled in -2
 
