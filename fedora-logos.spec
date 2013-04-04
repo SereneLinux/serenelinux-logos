@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 19.0.0
+Version: 19.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -285,6 +285,10 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %changelog
+* Thu Apr  4 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.1-1
+- add tm mark to SVG
+- removed the gradient version of the SVG from fedora-logo-sprite.svg
+
 * Thu Feb 14 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.0-1
 - add rnotes
 - do not hardlink anything in /boot
