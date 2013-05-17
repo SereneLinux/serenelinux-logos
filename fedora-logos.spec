@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 19.0.2
+Version: 19.0.3
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -55,13 +55,6 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 %endif
 mkdir -p $RPM_BUILD_ROOT/boot/grub2/themes/system/
-install -p -m 644 bootloader/background.png $RPM_BUILD_ROOT/boot/grub2/themes/system/background.png
-pushd $RPM_BUILD_ROOT/boot/grub2/themes/system/
-# We have to do a cp here instead of an ls because some envs require that
-# /boot is VFAT, which doesn't support symlinks.
-cp -a background.png fireworks.png
-popd
-
 # end i386 bits
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
@@ -74,16 +67,6 @@ install -p -m 644 bootloader/fedora.icns $RPM_BUILD_ROOT%{_datadir}/pixmaps/boot
 # To regenerate these files, run:
 # pngtopnm foo.png | ppmtoapplevol > foo.vol
 install -p -m 644 bootloader/fedora.vol bootloader/fedora-media.vol $RPM_BUILD_ROOT%{_datadir}/pixmaps/bootloader
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
-for i in gnome-splash/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps/splash
-done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
-for i in gnome-screensaver/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/gnome-screensaver
-done
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
 for i in pixmaps/* ; do
@@ -202,7 +185,6 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/icons/Bluecurve/*/apps/*
 %{_datadir}/icons/Fedora/*/apps/
 %{_datadir}/icons/Fedora/*/places/*
-%{_datadir}/gnome-screensaver/*
 %{_datadir}/%{name}/
 
 # we multi-own these directories, so as not to require the packages that
@@ -267,7 +249,6 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/anaconda/pixmaps/
 %dir %{_datadir}/firstboot/
 %dir %{_datadir}/firstboot/themes/
-%dir %{_datadir}/gnome-screensaver/
 %dir %{_datadir}/plymouth/
 %dir %{_datadir}/plymouth/themes/
 # DO NOT REMOVE THESE DIRS!!! We still support the Leonidas and Solar themes!
@@ -280,11 +261,12 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %if 0%{?fedora} <= 17
 /boot/grub/splash.xpm.gz
 %endif
-/boot/grub2/themes/system/background.png
-/boot/grub2/themes/system/fireworks.png
 # end i386 bits
 
 %changelog
+* Fri May 17 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.3-1
+- drop unused files to trim down this package size a bit
+
 * Tue May  7 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.2-1
 - add fedora-gdm-logo.png for login screen
 
