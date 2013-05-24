@@ -2,7 +2,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 19.0.3
+Version: 19.0.4
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
@@ -55,6 +55,12 @@ mkdir -p $RPM_BUILD_ROOT/boot/grub
 install -p -m 644 -D bootloader/splash.xpm.gz $RPM_BUILD_ROOT/boot/grub/splash.xpm.gz
 %endif
 mkdir -p $RPM_BUILD_ROOT/boot/grub2/themes/system/
+install -p -m 644 bootloader/background.png $RPM_BUILD_ROOT/boot/grub2/themes/system/background.png
+pushd $RPM_BUILD_ROOT/boot/grub2/themes/system/
+# We have to do a cp here instead of an ls because some envs require that
+# /boot is VFAT, which doesn't support symlinks.
+cp -a background.png fireworks.png
+popd
 # end i386 bits
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/firstboot/themes/fedora-%{codename}/
@@ -261,9 +267,14 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %if 0%{?fedora} <= 17
 /boot/grub/splash.xpm.gz
 %endif
+/boot/grub2/themes/system/background.png
+/boot/grub2/themes/system/fireworks.png
 # end i386 bits
 
 %changelog
+* Fri May 24 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.4-1
+- bring back the grub2 background/fireworks files
+
 * Fri May 17 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.3-1
 - drop unused files to trim down this package size a bit
 
@@ -880,7 +891,7 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 * Mon Feb 07 2000 Preston Brown <pbrown@redhat.com>
 - rebuild for new description.
 
-* Fri Sep 25 1999 Bill Nottingham <notting@redhat.com>
+* Sat Sep 25 1999 Bill Nottingham <notting@redhat.com>
 - different.
 
 * Mon Sep 13 1999 Preston Brown <pbrown@redhat.com>
