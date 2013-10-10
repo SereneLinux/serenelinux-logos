@@ -2,8 +2,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 19.0.4
-Release: 4%{?dist}
+Version: 21.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -19,7 +19,9 @@ Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
 # For splashtolss.sh
+%if %{_arch} == x86_64 || %{_arch} == i686
 BuildRequires: syslinux-perl, netpbm-progs
+%endif
 Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
@@ -144,6 +146,9 @@ install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{
 install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/start-here.svg
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
+%if %{_arch} == x86_64 || %{_arch} == i686
+(cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install-lss)
+%endif
 
 for i in 16 22 24 32 36 48 96 256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
@@ -205,7 +210,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/*
 %exclude %{_datadir}/pixmaps/poweredby.png
 %{_datadir}/anaconda/pixmaps/*
+%if %{_arch} == x86_64 || %{_arch} == i686
 %{_datadir}/anaconda/boot/splash.lss
+%endif
 %{_datadir}/anaconda/boot/syslinux-splash.png
 %{_datadir}/anaconda/boot/splash.png
 %{_datadir}/icons/hicolor/*/apps/*
@@ -297,6 +304,11 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Oct  9 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.0-1
+- update to 21.0.0
+- arch conditionalize the lss magic, cannot use ifarch because it checks
+  _target_cpu, not _arch, and _target_cpu evals to "noarch" here
+
 * Wed Oct  9 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.4-4
 - subpackage poweredby.png to minimize httpd footprint
 
