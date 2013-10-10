@@ -3,7 +3,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 19.0.4
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -40,6 +40,23 @@ but not in a Fedora Remix. If necessary, this package can be replaced by
 the more liberally licensed generic-logos package.
 
 See the included COPYING file for full information on copying and 
+redistribution of this package and its contents.
+
+%package httpd
+Summary: Fedora-related icons and pictures used by httpd
+
+%description httpd
+The fedora-logos-httpd package contains image files which incorporate the
+Fedora trademarks (the "Marks"). The Marks are trademarks or registered
+trademarks of Red Hat, Inc. in the United States and other countries and
+are used by permission.
+
+This package and its content may not be distributed with anything but
+unmodified packages from Fedora Project. It can be used in a Fedora Spin,
+but not in a Fedora Remix. If necessary, this package can be replaced by
+the more liberally licensed generic-logos package.
+
+See the included COPYING file for full information on copying and
 redistribution of this package and its contents.
 
 %prep
@@ -186,6 +203,7 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
 
 %{_datadir}/pixmaps/*
+%exclude %{_datadir}/pixmaps/poweredby.png
 %{_datadir}/anaconda/pixmaps/*
 %{_datadir}/anaconda/boot/splash.lss
 %{_datadir}/anaconda/boot/syslinux-splash.png
@@ -274,7 +292,14 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 /boot/grub2/themes/system/fireworks.png
 # end i386 bits
 
+%files httpd
+%doc COPYING
+%{_datadir}/pixmaps/poweredby.png
+
 %changelog
+* Wed Oct  9 2013 Tom Callaway <spot@fedoraproject.org> - 19.0.4-4
+- subpackage poweredby.png to minimize httpd footprint
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 19.0.4-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
