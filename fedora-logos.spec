@@ -17,7 +17,7 @@ Conflicts: kdebase <= 3.1.5
 Conflicts: anaconda-images <= 10
 Conflicts: redhat-artwork <= 5.0.5
 # For splashtolss.sh
-%if %{_arch} == x86_64 || %{_arch} == i686
+%ifarch x86_64 i686
 BuildRequires: syslinux-perl, netpbm-progs
 %endif
 Requires(post): coreutils
@@ -145,7 +145,7 @@ install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{
 install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/start-here.svg
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
-%if %{_arch} == x86_64 || %{_arch} == i686
+%ifarch i686 x86_64
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install-lss)
 %endif
 
@@ -209,7 +209,7 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/*
 %exclude %{_datadir}/pixmaps/poweredby.png
 %{_datadir}/anaconda/pixmaps/*
-%if %{_arch} == x86_64 || %{_arch} == i686
+%ifarch x86_64 i686
 %{_datadir}/anaconda/boot/splash.lss
 %endif
 %{_datadir}/anaconda/boot/syslinux-splash.png
