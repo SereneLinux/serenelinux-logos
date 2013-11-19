@@ -2,14 +2,12 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 21.0.0
+Version: 21.0.1
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
-
-BuildArch: noarch
 Obsoletes: redhat-logos
 Obsoletes: gnome-logos
 Provides: redhat-logos = %{version}-%{release}
@@ -46,6 +44,8 @@ redistribution of this package and its contents.
 
 %package httpd
 Summary: Fedora-related icons and pictures used by httpd
+Provides: system-logos-httpd = %{version}-%{release}
+BuildArch: noarch
 
 %description httpd
 The fedora-logos-httpd package contains image files which incorporate the
@@ -98,10 +98,9 @@ for i in pixmaps/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/pixmaps
 done
 
-# when we get translated rnotes, I'll need to rework this, but this will do for now
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/rnotes/en
 for i in rnotes/* ; do
-  install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/rnotes/en
+  mkdir -p $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/$i
+  install -p -m 644 $i/* $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/$i
 done
 
 # The hal rnote is a placeholder. "the HAL banner is inappropriate and must die"
@@ -304,6 +303,10 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue Nov 19 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.1-1
+- make arch specific package so that it always builds
+- add lang specific rnotes
+
 * Wed Oct  9 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.0-1
 - update to 21.0.0
 - arch conditionalize the lss magic, cannot use ifarch because it checks
