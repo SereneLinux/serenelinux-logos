@@ -1,9 +1,12 @@
 %global codename sphericalcow
+# Package is only arch specific due to missing deps on arm
+# Debuginfo package is useless.
+%global debug_package %{nil}
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 21.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -303,6 +306,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Dec 12 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.1-2
+- do not make useless debuginfo package (bz 1035928)
+
 * Tue Nov 19 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.1-1
 - make arch specific package so that it always builds
 - add lang specific rnotes
