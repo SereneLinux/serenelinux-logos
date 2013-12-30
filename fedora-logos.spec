@@ -5,8 +5,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 21.0.1
-Release: 2%{?dist}
+Version: 21.0.2
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: http://git.fedorahosted.org/git/fedora-logos.git/
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -105,9 +105,6 @@ for i in rnotes/* ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/$i
   install -p -m 644 $i/* $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/$i
 done
-
-# The hal rnote is a placeholder. "the HAL banner is inappropriate and must die"
-rm -rf $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/rnotes/en/Hal.jpg
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
 for i in plymouth/charge/* ; do
@@ -306,6 +303,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Mon Dec 30 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.2-1
+- move to svg versions of rnotes (RIP HAL-9000 rnote)
+
 * Thu Dec 12 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.1-2
 - do not make useless debuginfo package (bz 1035928)
 
