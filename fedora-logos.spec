@@ -8,7 +8,7 @@ Summary: Fedora-related icons and pictures
 Version: 21.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
-URL: http://git.fedorahosted.org/git/fedora-logos.git/
+URL: https://git.fedorahosted.org/git/fedora-logos.git
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
 Obsoletes: redhat-logos
