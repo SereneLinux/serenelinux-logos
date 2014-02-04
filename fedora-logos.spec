@@ -5,7 +5,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 21.0.2
+Version: 21.0.3
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://git.fedorahosted.org/git/fedora-logos.git
@@ -27,6 +27,8 @@ Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
 BuildRequires: kde-filesystem
+# For optimizing png files
+BuildRequires: optipng
 # For generating the EFI icon
 BuildRequires: ImageMagick
 BuildRequires: libicns-utils
@@ -202,6 +204,8 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
+# No one else before us owns this, so we shall.
+%dir %{_kde4_sharedir}/kde4/
 %{_kde4_iconsdir}/oxygen/
 # DO NOT REMOVE THIS ICON!!! We still support the Leonidas and Solar themes!
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
@@ -303,6 +307,11 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue Feb  4 2014 Tom Callaway <spot@fedoraproject.org> - 21.0.3-1
+- optimize pngs
+- own /usr/share/kde4/
+- update rnote svg to include bulgarian and croatian
+
 * Mon Dec 30 2013 Tom Callaway <spot@fedoraproject.org> - 21.0.2-1
 - move to svg versions of rnotes (RIP HAL-9000 rnote)
 
