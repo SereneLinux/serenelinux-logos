@@ -5,7 +5,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 21.0.4
+Version: 21.0.5
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://git.fedorahosted.org/git/fedora-logos.git
@@ -116,26 +116,21 @@ done
 for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
+  pushd $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
+  ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
+  ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
+  ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
+  ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png start-here.png
+  popd
   for i in icons/hicolor/$size/apps/* ; do
     install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
-    pushd $RPM_BUILD_ROOT%{_datadir}/icons/Bluecurve/$size/apps
-    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png icon-panel-menu.png
-    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png gnome-main-menu.png
-    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png kmenu.png
-    ln -s ../../../hicolor/$size/apps/fedora-logo-icon.png start-here.png
-    popd
   done
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps
-install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/48x48/apps/
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps
-install -p -m 644 icons/Fedora/scalable/apps/* $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/apps/
-
 mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
-install -p -m 644 icons/Fedora/48x48/apps/* $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
+install -p -m 644 icons/hicolor/48x48/apps/anaconda.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
-install -p -m 644 icons/Fedora/scalable/apps/*  $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
+install -p -m 644 icons/hicolor/scalable/apps/anaconda.svg $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
@@ -145,22 +140,30 @@ popd
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/start-here.svg
+install -p -m 644 icons/hicolor/scalable/apps/anaconda.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/anaconda.svg
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/places/
+pushd $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/places/
+ln -s ../apps/start-here.svg .
+popd
 
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 %ifarch i686 x86_64
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install-lss)
 %endif
 
+# Variant art
+pushd anaconda
+for i in cloud server workstation ; do
+  cp -a $i $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/
+done
+popd
+
 for i in 16 22 24 32 36 48 96 256 ; do
-  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places
-  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/${i}x${i}/places/start-here.png
+  mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/places
+  install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/places/start-here.png
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/${i}x${i}/places/start-here-kde-fedora.png 
 done
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
-pushd $RPM_BUILD_ROOT%{_datadir}/icons/Fedora/scalable/places/
-ln -s ../../../hicolor/scalable/apps/start-here.svg .
-popd
 
 # DO NOT REMOVE THIS ICON!!! We still support the Leonidas and Solar themes!
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
@@ -219,9 +222,8 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/anaconda/boot/syslinux-splash.png
 %{_datadir}/anaconda/boot/splash.png
 %{_datadir}/icons/hicolor/*/apps/*
+%{_datadir}/icons/hicolor/*/places/*
 %{_datadir}/icons/Bluecurve/*/apps/*
-%{_datadir}/icons/Fedora/*/apps/
-%{_datadir}/icons/Fedora/*/places/*
 %{_datadir}/%{name}/
 
 # we multi-own these directories, so as not to require the packages that
@@ -243,44 +245,34 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/icons/Bluecurve/96x96/apps/
 %dir %{_datadir}/icons/Bluecurve/256x256/
 %dir %{_datadir}/icons/Bluecurve/256x256/apps/
-%dir %{_datadir}/icons/Fedora/
-%dir %{_datadir}/icons/Fedora/16x16/
-%dir %{_datadir}/icons/Fedora/16x16/places/
-%dir %{_datadir}/icons/Fedora/22x22/
-%dir %{_datadir}/icons/Fedora/22x22/places/
-%dir %{_datadir}/icons/Fedora/24x24/
-%dir %{_datadir}/icons/Fedora/24x24/places/
-%dir %{_datadir}/icons/Fedora/32x32/
-%dir %{_datadir}/icons/Fedora/32x32/places/
-%dir %{_datadir}/icons/Fedora/36x36/
-%dir %{_datadir}/icons/Fedora/36x36/places/
-%dir %{_datadir}/icons/Fedora/48x48/
-%dir %{_datadir}/icons/Fedora/48x48/places/
-%dir %{_datadir}/icons/Fedora/96x96/
-%dir %{_datadir}/icons/Fedora/96x96/places/
-%dir %{_datadir}/icons/Fedora/256x256/
-%dir %{_datadir}/icons/Fedora/256x256/places/
-%dir %{_datadir}/icons/Fedora/scalable/
-%dir %{_datadir}/icons/Fedora/scalable/places/
 %dir %{_datadir}/icons/hicolor/
 %dir %{_datadir}/icons/hicolor/16x16/
 %dir %{_datadir}/icons/hicolor/16x16/apps/
+%dir %{_datadir}/icons/hicolor/16x16/places/
 %dir %{_datadir}/icons/hicolor/22x22/
 %dir %{_datadir}/icons/hicolor/22x22/apps/
+%dir %{_datadir}/icons/hicolor/22x22/places/
 %dir %{_datadir}/icons/hicolor/24x24/
 %dir %{_datadir}/icons/hicolor/24x24/apps/
+%dir %{_datadir}/icons/hicolor/24x24/places/
 %dir %{_datadir}/icons/hicolor/32x32/
 %dir %{_datadir}/icons/hicolor/32x32/apps/
+%dir %{_datadir}/icons/hicolor/32x32/places/
 %dir %{_datadir}/icons/hicolor/36x36/
 %dir %{_datadir}/icons/hicolor/36x36/apps/
+%dir %{_datadir}/icons/hicolor/36x36/places/
 %dir %{_datadir}/icons/hicolor/48x48/
 %dir %{_datadir}/icons/hicolor/48x48/apps/
+%dir %{_datadir}/icons/hicolor/48x48/places/
 %dir %{_datadir}/icons/hicolor/96x96/
 %dir %{_datadir}/icons/hicolor/96x96/apps/
+%dir %{_datadir}/icons/hicolor/96x96/places/
 %dir %{_datadir}/icons/hicolor/256x256/
 %dir %{_datadir}/icons/hicolor/256x256/apps/
+%dir %{_datadir}/icons/hicolor/256x256/places/
 %dir %{_datadir}/icons/hicolor/scalable/
 %dir %{_datadir}/icons/hicolor/scalable/apps/
+%dir %{_datadir}/icons/hicolor/scalable/places/
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/boot/
 %dir %{_datadir}/anaconda/pixmaps/
@@ -307,6 +299,11 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Nov 19 2014 Tom Callaway <spot@fedoraproject.org> - 21.0.5-1
+- add fedora logo for background overlay
+- move anaconda logo files into hicolor (drop old "Fedora" dir)
+- add anaconda theme art for "no product", workstation, server, cloud
+
 * Tue Sep 23 2014 Tom Callaway <spot@fedoraproject.org> - 21.0.4-1
 - update rnotes images to include de translations (thanks Roman Spirgi and Dominique)
 
