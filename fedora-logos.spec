@@ -29,6 +29,7 @@ BuildRequires: hardlink
 BuildRequires: kde-filesystem
 # For optimizing png files
 BuildRequires: optipng
+BuildRequires: zopfli
 # For generating the EFI icon
 BuildRequires: ImageMagick
 BuildRequires: libicns-utils
