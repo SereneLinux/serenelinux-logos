@@ -5,8 +5,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 22.0.0
-Release: 3%{?dist}
+Version: 26.0.0
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://git.fedorahosted.org/git/fedora-logos.git
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -147,6 +147,17 @@ pushd $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/places/
 ln -s ../apps/start-here.svg .
 popd
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/icewm_taskbar_logos_fedora.tar.gz $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux_fedora.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux_fedora_logo.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks-2px/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/icewm_taskbar_logos_fedora.tar.gz $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks-2px/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks-2px/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux_fedora.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks-2px/taskbar/
+install -p -m 644 icons/clearlooks/taskbar/linux_fedora_logo.xpm $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks-2px/taskbar/
+
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install)
 %ifarch i686 x86_64
 (cd anaconda; make DESTDIR=$RPM_BUILD_ROOT install-lss)
@@ -280,6 +291,8 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %dir %{_datadir}/firstboot/themes/
 %dir %{_datadir}/plymouth/
 %dir %{_datadir}/plymouth/themes/
+%{_datadir}/icewm/themes/clearlooks/taskbar/*
+%{_datadir}/icewm/themes/clearlooks-2px/taskbar/*
 # DO NOT REMOVE THESE DIRS!!! We still support the Leonidas and Solar themes!
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
@@ -299,6 +312,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue Jan 03 2017 Tom Callaway <spot@fedoraproject.org> - 26.0.0-1
+- move icewm fedora logos into this package
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 22.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
