@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 26.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: https://git.fedorahosted.org/git/fedora-logos.git
 Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -215,7 +215,7 @@ gtk-update-icon-cache %{_datadir}/icons/Fedora &>/dev/null || :
 gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 
 %files
-%doc COPYING
+%license COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
@@ -309,10 +309,13 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 # end i386 bits
 
 %files httpd
-%doc COPYING
+%license COPYING
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Feb  8 2017 Tom Callaway <spot@fedoraproject.org> - 26.0.0-2
+- mark license files correctly
+
 * Tue Jan 03 2017 Tom Callaway <spot@fedoraproject.org> - 26.0.0-1
 - move icewm fedora logos into this package
 
