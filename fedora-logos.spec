@@ -5,11 +5,11 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 26.0.0
-Release: 2%{?dist}
+Version: 26.0.1
+Release: 1%{?dist}
 Group: System Environment/Base
-URL: https://git.fedorahosted.org/git/fedora-logos.git
-Source0: https://fedorahosted.org/releases/f/e/fedora-logos/fedora-logos-%{version}.tar.bz2
+URL: https://pagure.io/fedora-logos
+Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
 Obsoletes: redhat-logos
 Obsoletes: gnome-logos
@@ -313,6 +313,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue May 23 2017 Tom Callaway <spot@fedoraproject.org> - 26.0.1-1
+- update to 26.0.1, add fedora/fedora_lightbackground.svg
+
 * Wed Feb  8 2017 Tom Callaway <spot@fedoraproject.org> - 26.0.0-2
 - mark license files correctly
 
