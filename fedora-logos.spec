@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 26.0.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -313,6 +313,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 26.0.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 26.0.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
