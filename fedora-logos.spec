@@ -5,7 +5,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 28.0.1
+Version: 28.0.2
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
@@ -166,7 +166,7 @@ install -p -m 644 icons/clearlooks/taskbar/linux_fedora_logo.xpm $RPM_BUILD_ROOT
 
 # Variant art
 pushd anaconda
-for i in cloud server workstation ; do
+for i in atomic cloud server workstation ; do
   cp -a $i $RPM_BUILD_ROOT%{_datadir}/anaconda/pixmaps/
 done
 popd
@@ -313,6 +313,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Jan 04 2018 Tom Callaway <spot@fedoraproject.org> - 28.0.2-1
+- create atomic files for anaconda to use
+
 * Mon Dec 04 2017 Stephen Gallagher <sgallagh@redhat.com> - 28.0.1-1
 - Move CSS for logos in the graphical installer into fedora-logos
 
