@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 28.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -313,6 +313,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 28.0.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Thu Jan 04 2018 Tom Callaway <spot@fedoraproject.org> - 28.0.2-1
 - create atomic files for anaconda to use
 
