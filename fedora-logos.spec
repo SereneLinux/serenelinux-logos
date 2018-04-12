@@ -5,8 +5,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 28.0.2
-Release: 3%{?dist}
+Version: 28.0.3
+Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -313,6 +313,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Apr 12 2018 Tom Callaway <spot@fedoraproject.org> - 28.0.3-1
+- update to 28.0.3 to fix server image
+
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 28.0.2-3
 - Escape macros in %%changelog
 
