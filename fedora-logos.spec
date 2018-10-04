@@ -321,6 +321,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 - update to 30.0.0
 - httpd subpackage now has a "test page" index.html
 
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 28.0.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Thu Apr 12 2018 Tom Callaway <spot@fedoraproject.org> - 28.0.3-1
 - update to 28.0.3 to fix server image
 
