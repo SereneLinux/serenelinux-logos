@@ -5,7 +5,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 28.0.3
+Version: 30.0.0
 Release: 1%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
@@ -186,6 +186,9 @@ cp -a fedora/*.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 cp -a css3 $RPM_BUILD_ROOT%{_datadir}/%{name}/
 
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
+cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
+
 # save some dup'd icons
 # Except in /boot. Because some people think it is fun to use VFAT for /boot.
 /usr/sbin/hardlink -v %{buildroot}/usr
@@ -310,9 +313,14 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 
 %files httpd
 %license COPYING
+%{_datadir}/fedora-testpage/index.html
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Oct  4 2018 Tom Callaway <spot@fedoraproject.org> - 30.0.0-1
+- update to 30.0.0
+- httpd subpackage now has a "test page" index.html
+
 * Thu Apr 12 2018 Tom Callaway <spot@fedoraproject.org> - 28.0.3-1
 - update to 28.0.3 to fix server image
 
