@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -193,30 +193,6 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 # Except in /boot. Because some people think it is fun to use VFAT for /boot.
 /usr/sbin/hardlink -v %{buildroot}/usr
 
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-touch --no-create %{_datadir}/icons/Bluecurve || :
-touch --no-create %{_datadir}/icons/Fedora || :
-touch --no-create %{_kde4_iconsdir}/oxygen ||:
-
-%postun
-if [ $1 -eq 0 ] ; then
-  touch --no-create %{_datadir}/icons/hicolor || :
-  touch --no-create %{_datadir}/icons/Bluecurve || :
-  touch --no-create %{_datadir}/icons/Fedora || :
-  touch --no-create %{_kde4_iconsdir}/oxygen ||:
-  gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-  gtk-update-icon-cache %{_datadir}/icons/Bluecurve &>/dev/null || :
-  gtk-update-icon-cache %{_datadir}/icons/Fedora &>/dev/null || :
-  gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
-fi
-
-%posttrans
-gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-gtk-update-icon-cache %{_datadir}/icons/Bluecurve &>/dev/null || :
-gtk-update-icon-cache %{_datadir}/icons/Fedora &>/dev/null || :
-gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
-
 %files
 %license COPYING
 %config(noreplace) %{_sysconfdir}/favicon.png
@@ -317,6 +293,9 @@ gtk-update-icon-cache %{_kde4_iconsdir}/oxygen &>/dev/null || :
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Fri Nov  9 2018 Tom Callaway <spot@fedoraproject.org> - 30.0.0-2
+- removed all scriptlets (they were not really useful)
+
 * Thu Oct  4 2018 Tom Callaway <spot@fedoraproject.org> - 30.0.0-1
 - update to 30.0.0
 - httpd subpackage now has a "test page" index.html
