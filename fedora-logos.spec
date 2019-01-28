@@ -7,7 +7,6 @@ Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.0
 Release: 2%{?dist}
-Group: System Environment/Base
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
