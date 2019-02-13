@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
@@ -112,6 +112,8 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
 for i in plymouth/charge/* ; do
   install -p -m 644 $i $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/charge
 done
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/spinner
+install -p -m 644 pixmaps/fedora-gdm-logo.png $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/spinner/watermark.png
 
 for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/$size/apps
@@ -197,6 +199,7 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/firstboot/themes/fedora-%{codename}/
 %{_datadir}/plymouth/themes/charge/
+%{_datadir}/plymouth/themes/spinner/
 # No one else before us owns this, so we shall.
 %dir %{_kde4_sharedir}/kde4/
 %{_kde4_iconsdir}/oxygen/
@@ -292,6 +295,10 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Wed Feb 13 2019 Hans de Goede <jwrdegoede@fedoraproject.org> - 30.0.0-4
+- Add plymouth spinner theme watermark to brand the new plymouth theme for:
+  https://fedoraproject.org/wiki/Changes/FlickerFreeBoot
+
 * Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 30.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
