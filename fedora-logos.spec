@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
@@ -22,7 +22,6 @@ Conflicts: redhat-artwork <= 5.0.5
 %ifarch x86_64 i686
 BuildRequires: syslinux-perl, netpbm-progs
 %endif
-Requires(post): coreutils
 BuildRequires: hardlink
 # For _kde4_* macros:
 BuildRequires: kde-filesystem
@@ -295,6 +294,9 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Mar  7 2019 Tim Landscheidt <tim@tim-landscheidt.de> - 30.0.0-5
+- Remove obsolete requirements for post scriptlet
+
 * Wed Feb 13 2019 Hans de Goede <jwrdegoede@fedoraproject.org> - 30.0.0-4
 - Add plymouth spinner theme watermark to brand the new plymouth theme for:
   https://fedoraproject.org/wiki/Changes/FlickerFreeBoot
