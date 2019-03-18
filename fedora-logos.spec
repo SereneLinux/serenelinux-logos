@@ -5,8 +5,8 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 30.0.0
-Release: 3%{?dist}
+Version: 30.0.1
+Release: 1%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details. 
@@ -292,6 +292,9 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Mon Mar 18 2019 Tom Callaway <spot@fedoraproject.org> - 30.0.1-1
+- update to 30.0.1 (fixes rnotes not rendering text)
+
 * Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 30.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
