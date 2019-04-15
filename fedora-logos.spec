@@ -5,7 +5,7 @@
 
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
-Version: 30.0.1
+Version: 30.0.2
 Release: 1%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
@@ -128,10 +128,12 @@ for size in 16x16 22x22 24x24 32x32 36x36 48x48 96x96 256x256 ; do
   done
 done
 
-mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
-install -p -m 644 icons/hicolor/48x48/apps/anaconda.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
+# mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
+# install -p -m 644 icons/hicolor/48x48/apps/anaconda.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
-install -p -m 644 icons/hicolor/scalable/apps/anaconda.svg $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
+install -p -m 644 icons/hicolor/scalable/apps/org.fedoraproject.AnacondaInstaller.svg $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
+
+
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 pushd $RPM_BUILD_ROOT%{_sysconfdir}
@@ -141,12 +143,15 @@ popd
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/xfce4_xicon1.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps
 install -p -m 644 icons/hicolor/scalable/apps/fedora-logo-icon.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/start-here.svg
-install -p -m 644 icons/hicolor/scalable/apps/anaconda.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/anaconda.svg
+install -p -m 644 icons/hicolor/scalable/apps/org.fedoraproject.AnacondaInstaller.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/org.fedoraproject.AnacondaInstaller.svg
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/places/
 pushd $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/places/
 ln -s ../apps/start-here.svg .
 popd
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/symbolic/apps
+install -p -m 644 icons/hicolor/symbolic/apps/org.fedoraproject.AnacondaInstaller-symbolic.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/symbolic/apps/
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
 install -p -m 644 icons/clearlooks/taskbar/icewm_taskbar_logos_fedora.tar.gz $RPM_BUILD_ROOT%{_datadir}/icewm/themes/clearlooks/taskbar/
@@ -294,6 +299,9 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Mon Apr 15 2019 Tom Callaway <spot@fedoraproject.org> - 30.0.2-1
+- update to 30.0.2 (update anaconda icons)
+
 * Mon Mar 18 2019 Tom Callaway <spot@fedoraproject.org> - 30.0.1-1
 - update to 30.0.1 (fixes rnotes not rendering text)
 
