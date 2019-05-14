@@ -6,10 +6,10 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
-License: Licensed only for approved usage, see COPYING for details. 
+License: Licensed only for approved usage, see COPYING for details.
 Obsoletes: redhat-logos
 Obsoletes: gnome-logos
 Provides: redhat-logos = %{version}-%{release}
@@ -31,6 +31,9 @@ BuildRequires: zopfli
 # For generating the EFI icon
 BuildRequires: ImageMagick
 BuildRequires: libicns-utils
+
+# Upstream patch: https://pagure.io/fedora-logos/pull-request/8
+Patch0001: 0001-Clean-up-poweredby-images.patch
 
 %description
 The fedora-logos package contains image files which incorporate the 
@@ -66,7 +69,7 @@ See the included COPYING file for full information on copying and
 redistribution of this package and its contents.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 make bootloader/fedora.icns
@@ -194,9 +197,16 @@ cp -a css3 $RPM_BUILD_ROOT%{_datadir}/%{name}/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 
+# The proper path should be unbranded, but because of history it's easier for
+# this package to symlink the old path to the proper one. This avoids having
+# to perform scriptlet trickery to handle upgrades from the directory to a
+# symlink.
+ln -s fedora-testpage $RPM_BUILD_ROOT%{_datadir}/testpage
+
 # save some dup'd icons
 # Except in /boot. Because some people think it is fun to use VFAT for /boot.
-/usr/sbin/hardlink -v %{buildroot}/usr
+# hardlink is /usr/sbin/hardlink on Fedora <= 30 and /usr/bin/hardlink on F31+
+hardlink -v %{buildroot}/usr
 
 %files
 %license COPYING
@@ -295,10 +305,16 @@ cp -a testpage/index.html $RPM_BUILD_ROOT%{_datadir}/fedora-testpage/
 
 %files httpd
 %license COPYING
+%dir %{_datadir}/fedora-testpage
+%{_datadir}/testpage
 %{_datadir}/fedora-testpage/index.html
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue May 14 2019 Stephen Gallagher <sgallagh@redhat.com> - 30.0.2-2
+- Make the httpd testpage path non-branded.
+- Clean up the display of the "powered by" icons in the httpd testpage
+
 * Mon Apr 15 2019 Tom Callaway <spot@fedoraproject.org> - 30.0.2-1
 - update to 30.0.2 (update anaconda icons)
 
