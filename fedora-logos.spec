@@ -6,7 +6,7 @@
 Name: fedora-logos
 Summary: Fedora-related icons and pictures
 Version: 30.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 URL: https://pagure.io/fedora-logos
 Source0: https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License: Licensed only for approved usage, see COPYING for details.
@@ -311,6 +311,9 @@ hardlink -v %{buildroot}/usr
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 30.0.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Tue May 14 2019 Stephen Gallagher <sgallagh@redhat.com> - 30.0.2-2
 - Make the httpd testpage path non-branded.
 - Clean up the display of the "powered by" icons in the httpd testpage
