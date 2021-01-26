@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
 Version:	33.0.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License:	Licensed only for approved usage, see COPYING for details.
@@ -272,6 +272,9 @@ hardlink -v %{buildroot}/usr
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 33.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Tue Oct 27 2020 Tom Callaway <spot@fedoraproject.org> - 33.0.0-1
 - drop fedora 17 conditionals (lol)
 - get rid of firstboot themed files (it went away after Fedora 18)
