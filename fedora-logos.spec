@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
 Version:	33.0.0
-Release:	2%{?dist}
+Release:	3%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.bz2
 License:	Licensed only for approved usage, see COPYING for details.
@@ -10,8 +10,11 @@ Provides:	gnome-logos = %{version}-%{release}
 Provides:	system-logos = %{version}-%{release}
 BuildArch:	noarch
 BuildRequires:	hardlink
+
+%if ! 0%{?eln}
 # For _kde4_* macros:
 BuildRequires:	kde-filesystem
+%endif
 
 %description
 The fedora-logos package contains image files which incorporate the
@@ -99,11 +102,15 @@ done
 for i in 16 22 24 32 36 48 96 256 ; do
   mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/places
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/places/start-here.png
+%if ! 0%{?eln}
   install -p -m 644 -D $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/${i}x${i}/apps/fedora-logo-icon.png $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/${i}x${i}/places/start-here-kde-fedora.png 
+%endif
 done
 
+%if ! 0%{?eln}
 mkdir -p $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
 install -p -m 644 icons/hicolor/scalable/apps/org.fedoraproject.AnacondaInstaller.svg $RPM_BUILD_ROOT%{_kde4_iconsdir}/oxygen/scalable/apps/
+%endif
 
 # Fedora favicon
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
@@ -157,10 +164,12 @@ for i in atomic cloud server workstation ; do
 done
 popd
 
+%if ! 0%{?eln}
 # KDE Theme logos
 # DO NOT REMOVE THIS ICON!!! We still support the Leonidas and Solar themes!
 mkdir -p $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/
 install -p -m 644 kde-splash/Leonidas-fedora.png $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
+%endif
 
 # SVG Fedora logos
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -187,11 +196,13 @@ hardlink -v %{buildroot}/usr
 %config(noreplace) %{_sysconfdir}/favicon.png
 %{_datadir}/plymouth/themes/charge/
 %{_datadir}/plymouth/themes/spinner/
+%if ! 0%{?eln}
 # No one else before us owns this, so we shall.
 %dir %{_kde4_sharedir}/kde4/
 %{_kde4_iconsdir}/oxygen/
 # DO NOT REMOVE THIS ICON!!! We still support the Leonidas and Solar themes!
 %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536/logo.png
+%endif
 %{_datadir}/pixmaps/*
 # This lives in the http subpackage
 %exclude %{_datadir}/pixmaps/poweredby.png
@@ -257,12 +268,14 @@ hardlink -v %{buildroot}/usr
 %dir %{_datadir}/anaconda/pixmaps/
 %dir %{_datadir}/plymouth/
 %dir %{_datadir}/plymouth/themes/
+%if ! 0%{?eln}
 # DO NOT REMOVE THESE DIRS!!! We still support the Leonidas and Solar themes!
 %dir %{_kde4_appsdir}
 %dir %{_kde4_appsdir}/ksplash
 %dir %{_kde4_appsdir}/ksplash/Themes/
 %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/
 %dir %{_kde4_appsdir}/ksplash/Themes/Leonidas/2048x1536
+%endif
 
 %files httpd
 %license COPYING
@@ -272,6 +285,9 @@ hardlink -v %{buildroot}/usr
 %{_datadir}/pixmaps/poweredby.png
 
 %changelog
+* Tue Feb 09 2021 Jan Grulich <jgrulich@redhat.com> - 33.0.0-3
+- Do not require kde-filesystem on ELN
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 33.0.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
