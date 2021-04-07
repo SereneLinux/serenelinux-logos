@@ -206,6 +206,7 @@ install -p -m 644 anaconda/sidebar-logo.png %{buildroot}%{_datadir}/anaconda/pix
 install -p -m 644 anaconda/sidebar-logo_classic.png %{buildroot}%{_datadir}/anaconda/pixmaps/
 install -p -m 644 anaconda/sidebar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
 install -p -m 644 anaconda/topbar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/fedora.css %{buildroot}%{_datadir}/anaconda/pixmaps/
 
 # Variant Anaconda art
 pushd anaconda
