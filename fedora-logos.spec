@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
 Version:	34.0.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.xz
 License:	Licensed only for approved usage, see COPYING for details.
@@ -35,6 +35,7 @@ Summary:	Fedora-related icons and pictures used by httpd
 Provides:	system-logos-httpd = %{version}-%{release}
 BuildArch:	noarch
 Recommends:	julietaula-montserrat-base-web-fonts
+Provides:	system-logos(httpd-logo-ng)
 
 %description httpd
 The fedora-logos-httpd package contains image files which incorporate the
@@ -389,6 +390,9 @@ hardlink -vv %{buildroot}/usr
 
 
 %changelog
+* Mon Apr 12 2021 Lubos Uhliarik <luhliari@redhat.com> - 34.0.2-3
+- Provide: system-logos(httpd-logo-ng) for httpd subpackage
+
 * Mon Apr 12 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.2-2
 - install anaconda/fedora.css
 
