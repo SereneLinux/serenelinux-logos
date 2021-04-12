@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
 Version:	34.0.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.xz
 License:	Licensed only for approved usage, see COPYING for details.
@@ -389,6 +389,9 @@ hardlink -vv %{buildroot}/usr
 
 
 %changelog
+* Mon Apr 12 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.2-2
+- install anaconda/fedora.css
+
 * Wed Mar 31 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.2-1
 - fix logo without "f" cutout
 
