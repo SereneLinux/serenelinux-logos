@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
-Version:	34.0.2
-Release:	3%{?dist}
+Version:	34.0.3
+Release:	1%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.xz
 License:	Licensed only for approved usage, see COPYING for details.
@@ -390,6 +390,9 @@ hardlink -vv %{buildroot}/usr
 
 
 %changelog
+* Thu Apr 29 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.3-1
+- add logo file that breeze-icon-theme needs
+
 * Mon Apr 12 2021 Lubos Uhliarik <luhliari@redhat.com> - 34.0.2-3
 - Provide: system-logos(httpd-logo-ng) for httpd subpackage
 
