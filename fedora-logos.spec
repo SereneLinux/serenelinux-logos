@@ -1,6 +1,6 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
-Version:	34.0.3
+Version:	34.0.4
 Release:	1%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://releases.pagure.org/fedora-logos/fedora-logos-%{version}.tar.xz
@@ -390,6 +390,9 @@ hardlink -vv %{buildroot}/usr
 
 
 %changelog
+* Wed Jul 14 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.4-1
+- update to fix anaconda/pixmaps/topbar-bg.png (bz1959160)
+
 * Thu Apr 29 2021 Tom Callaway <spot@fedoraproject.org> - 34.0.3-1
 - add logo file that breeze-icon-theme needs
 
