@@ -1,9 +1,9 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
-Version:	34.0.7
+Version:	34.0.8
 Release:	1%{?dist}
 URL:		https://pagure.io/fedora-logos
-Source0:	https://github.com/SereneLinux/serenelinux-logos/archive/f11e09d78bdf4aba20fce841add4806310ee5dca.tar.gz
+Source0:	https://github.com/SereneLinux/serenelinux-logos/archive/e76d7e68ec1bdbc870446c591e11baaefa315ac3.tar.gz
 License:	Licensed only for approved usage, see COPYING for details.
 Provides:	redhat-logos = %{version}-%{release}
 Provides:	gnome-logos = %{version}-%{release}
@@ -71,7 +71,7 @@ PLEASE NOTE: This package does not provide system-logos and cannot be
 used as a drop-in replacement for fedora-logos.
 
 %prep
-%autosetup -p1 -n serenelinux-logos-f11e09d78bdf4aba20fce841add4806310ee5dca
+%autosetup -p1 -n serenelinux-logos-e76d7e68ec1bdbc870446c591e11baaefa315ac3
 
 %build
 
@@ -180,11 +180,11 @@ install -p -m 644 anaconda/anaconda_header_classic.png %{buildroot}%{_datadir}/a
 # This had not been regenerated since Fedora 17. Clearly not used anymore.
 # install -p -m 644 anaconda/progress_first.png %%{buildroot}%%{_datadir}/anaconda/pixmaps/
 # install -p -m 644 anaconda/splash.png %%{buildroot}%%{_datadir}/anaconda/pixmaps/
-## install -p -m 644 anaconda/sidebar-logo.png %{buildroot}%{_datadir}/anaconda/pixmaps/
-## install -p -m 644 anaconda/sidebar-logo_classic.png %{buildroot}%{_datadir}/anaconda/pixmaps/
-### install -p -m 644 anaconda/sidebar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
-## install -p -m 644 anaconda/topbar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
-## install -p -m 644 anaconda/fedora.css %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/sidebar-logo.png %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/sidebar-logo_classic.png %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/sidebar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/topbar-bg.png %{buildroot}%{_datadir}/anaconda/pixmaps/
+install -p -m 644 anaconda/fedora.css %{buildroot}%{_datadir}/anaconda/pixmaps/
 
 # Variant Anaconda art
 #pushd anaconda
@@ -205,6 +205,7 @@ cp -a fedora/*.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
 hardlink -vv %{buildroot}/usr
 
 %files
+
 %config(noreplace) %{_sysconfdir}/favicon.png
 # in -classic
 # This lives in the http subpackage
@@ -215,6 +216,7 @@ hardlink -vv %{buildroot}/usr
 %dir %{_datadir}/anaconda
 %dir %{_datadir}/anaconda/boot/
 %dir %{_datadir}/anaconda/pixmaps/
+
 %if ! 0%{?eln}
 %endif
 
@@ -232,6 +234,11 @@ hardlink -vv %{buildroot}/usr
    /usr/share/pixmaps/bootloader/fedora-media.vol
    /usr/share/pixmaps/bootloader/fedora.vol
    /usr/share/pixmaps/bootloader/serene.icns
+/usr/share/anaconda/pixmaps/fedora.css
+/usr/share/anaconda/pixmaps/sidebar-bg.png
+/usr/share/anaconda/pixmaps/sidebar-logo.png
+/usr/share/anaconda/pixmaps/sidebar-logo_classic.png
+/usr/share/anaconda/pixmaps/topbar-bg.png
    /etc/favicon.png
    /usr/share/fedora-logos/fascode_logo.svg
    /usr/share/fedora-logos/fascode_logo_darkbackground.svg
