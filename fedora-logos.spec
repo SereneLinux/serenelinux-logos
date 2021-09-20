@@ -1,7 +1,7 @@
 Name:		fedora-logos
 Summary:	Fedora-related icons and pictures
-Version:	34.0.8
-Release:	2%{?dist}
+Version:	35.9.9
+Release:	1%{?dist}
 URL:		https://pagure.io/fedora-logos
 Source0:	https://github.com/SereneLinux/serenelinux-logos/archive/e76d7e68ec1bdbc870446c591e11baaefa315ac3.tar.gz
 License:	Licensed only for approved usage, see COPYING for details.
